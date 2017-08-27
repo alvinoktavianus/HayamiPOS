@@ -48,13 +48,22 @@ export class LoginPage {
         UserPassword: this.password
       };
 
-      console.log(credentials);
+      const apiLocation = `${hostUrl}/api/users/login`;
 
-      // loading.present();
+      loading.present();
+      this.http
+        .post(apiLocation, credentials, {})
+        .subscribe(
+          data => {
+            console.log(data);
+            this.navCtrl.setRoot(TabsPage);
+          },
+          err => this.presentAlert()
+        );
+      
+      loading.dismiss();
 
-      // loading.dismiss();
-
-      this.navCtrl.setRoot(TabsPage);
+      // this.navCtrl.setRoot(TabsPage);
     }
 
   }
