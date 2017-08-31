@@ -13,6 +13,7 @@ import { LoginPage } from '../pages/login/login';
 import { ProductPage } from '../pages/product/product'
 import { CartPage } from '../pages/cart/cart';
 import { TransactionPage } from '../pages/transaction/transaction';
+import { ReturnPage } from '../pages/return/return';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -28,6 +29,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ProductPage,
     CartPage,
     TransactionPage,
+    ReturnPage,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +47,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     ProductPage,
     CartPage,
     TransactionPage,
+    ReturnPage,
   ],
   providers: [
     StatusBar,
