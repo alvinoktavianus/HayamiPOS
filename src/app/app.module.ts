@@ -4,12 +4,14 @@ import { HttpModule } from '@angular/http';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
+// Import all of the page here
 import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
 import { ProductPage } from '../pages/product/product'
+import { CartPage } from '../pages/cart/cart';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -23,6 +25,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     TabsPage,
     LoginPage,
     ProductPage,
+    CartPage,
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,8 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     HomePage,
     TabsPage,
     LoginPage,
-    ProductPage
+    ProductPage,
+    CartPage,
   ],
   providers: [
     StatusBar,
