@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, LoadingController, AlertController } from 'ionic-angular';
-import { Http } from '@angular/http';
+import {Component} from '@angular/core';
+import {IonicPage, NavController, LoadingController, AlertController} from 'ionic-angular';
+import {Http} from '@angular/http';
 
-import { TabsPage } from '../tabs/tabs'
+import {TabsPage} from '../tabs/tabs'
 
 /**
  * Generated class for the LoginPage page.
@@ -20,7 +20,6 @@ export class LoginPage {
 
   public email: string;
   public password: string;
-  private responseData;
 
   constructor(public navCtrl: NavController,
               public loadingCtrl: LoadingController,
@@ -60,12 +59,9 @@ export class LoginPage {
           },
           err => this.presentAlert()
         );
-      
+
       loading.dismiss();
-
-      // this.navCtrl.setRoot(TabsPage);
     }
-
   }
 
   presentAlert() {
