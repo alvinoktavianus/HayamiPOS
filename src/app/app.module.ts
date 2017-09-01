@@ -13,6 +13,9 @@ import {TransactionPage} from '../pages/transaction/transaction';
 import {ReturnPage} from '../pages/return/return';
 import {AccountPage} from '../pages/account/account';
 import {MasterPage} from '../pages/master/master';
+import {CounterPage} from "../pages/counter/counter";
+import {MasterMenuPage} from "../pages/master-menu/master-menu";
+import {CustomerPage} from "../pages/customer/customer";
 
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
@@ -28,6 +31,9 @@ import {SplashScreen} from '@ionic-native/splash-screen';
     ReturnPage,
     AccountPage,
     MasterPage,
+    CounterPage,
+    MasterMenuPage,
+    CustomerPage,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +51,9 @@ import {SplashScreen} from '@ionic-native/splash-screen';
     ReturnPage,
     AccountPage,
     MasterPage,
+    CounterPage,
+    MasterMenuPage,
+    CustomerPage,
   ],
   providers: [
     StatusBar,
