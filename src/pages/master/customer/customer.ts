@@ -21,7 +21,7 @@ import {AddCustomerPage} from "./add-customer/add-customer";
 export class CustomerPage {
 
   public customers: any = [];
-  public counters: any = [];
+  public counters: any = {};
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -54,7 +54,9 @@ export class CustomerPage {
       .map(res => res.json())
       .subscribe(
         data => {
-
+          data.map((ctr, idx) => {
+            this.counters[ctr.CounterID] = ctr;
+          });
         }
       );
   }
