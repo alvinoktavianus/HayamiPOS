@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {CounterPage} from "../counter/counter";
-import {CustomerPage} from "../customer/customer";
+import {Component} from '@angular/core';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {CounterPage} from "./counter/counter";
+import {CustomerPage} from "./customer/customer";
+import {MasterProductPage} from "./master-product/master-product";
 
 /**
  * Generated class for the MasterPage page.
@@ -19,6 +20,7 @@ export class MasterPage {
 
   tabCounterRoot = CounterPage;
   tabCustomerRoot = CustomerPage;
+  tabProductRoot = MasterProductPage;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
