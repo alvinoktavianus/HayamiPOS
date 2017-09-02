@@ -61,4 +61,10 @@ export class CustomerPage {
       );
   }
 
+  doRefresh(refresher) {
+    this.fetchAllData();
+    refresher.complete();
+  }
+
+
 }
