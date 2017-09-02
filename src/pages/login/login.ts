@@ -32,36 +32,37 @@ export class LoginPage {
   }
 
   doLogin() {
-    let loading = this.loadingCtrl.create({
-      content: 'Please wait...'
-    });
-    const hostUrl = localStorage.getItem('hostUrl');
-
-    if (!hostUrl) {
-      this.presentNotConfigured();
-    } else if (this.email == null || this.password == null) {
-      this.presentAlert();
-    } else {
-      let credentials = {
-        UserEmail: this.email,
-        UserPassword: this.password
-      };
-
-      const apiLocation = `${hostUrl}/api/users/login`;
-
-      loading.present();
-      this.http
-        .post(apiLocation, credentials, {})
-        .subscribe(
-          data => {
-            console.log(data);
-            this.navCtrl.setRoot(TabsPage);
-          },
-          err => this.presentAlert()
-        );
-
-      loading.dismiss();
-    }
+    // let loading = this.loadingCtrl.create({
+    //   content: 'Please wait...'
+    // });
+    // const hostUrl = localStorage.getItem('hostUrl');
+    //
+    // if (!hostUrl) {
+    //   this.presentNotConfigured();
+    // } else if (this.email == null || this.password == null) {
+    //   this.presentAlert();
+    // } else {
+    //   let credentials = {
+    //     UserEmail: this.email,
+    //     UserPassword: this.password
+    //   };
+    //
+    //   const apiLocation = `${hostUrl}/api/users/login`;
+    //
+    //   loading.present();
+    //   this.http
+    //     .post(apiLocation, credentials, {})
+    //     .subscribe(
+    //       data => {
+    //         console.log(data);
+    //         this.navCtrl.setRoot(TabsPage);
+    //       },
+    //       err => this.presentAlert()
+    //     );
+    //
+    //   loading.dismiss();
+    // }
+    this.navCtrl.setRoot(TabsPage);
   }
 
   presentAlert() {

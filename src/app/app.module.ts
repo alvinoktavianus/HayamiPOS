@@ -13,6 +13,12 @@ import {TransactionPage} from '../pages/transaction/transaction';
 import {ReturnPage} from '../pages/return/return';
 import {AccountPage} from '../pages/account/account';
 import {MasterPage} from '../pages/master/master';
+import {CounterPage} from "../pages/master/counter/counter";
+import {CustomerPage} from "../pages/master/customer/customer";
+import {MasterProductPage} from "../pages/master/master-product/master-product";
+import {MasterTypePage} from "../pages/master/master-type/master-type";
+import {MasterModelPage} from "../pages/master/master-model/master-model";
+import {MasterDiscountPage} from "../pages/master/master-discount/master-discount";
 
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
@@ -28,6 +34,12 @@ import {SplashScreen} from '@ionic-native/splash-screen';
     ReturnPage,
     AccountPage,
     MasterPage,
+    CounterPage,
+    CustomerPage,
+    MasterProductPage,
+    MasterTypePage,
+    MasterModelPage,
+    MasterDiscountPage,
   ],
   imports: [
     BrowserModule,
@@ -45,6 +57,12 @@ import {SplashScreen} from '@ionic-native/splash-screen';
     ReturnPage,
     AccountPage,
     MasterPage,
+    CounterPage,
+    CustomerPage,
+    MasterProductPage,
+    MasterTypePage,
+    MasterModelPage,
+    MasterDiscountPage,
   ],
   providers: [
     StatusBar,
