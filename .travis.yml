@@ -12,6 +12,3 @@ before_install:
 
 install:
   - npm install
-
-script:
-  - ionic build
