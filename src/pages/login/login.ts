@@ -3,6 +3,7 @@ import {IonicPage, NavController, LoadingController, AlertController} from 'ioni
 import {Http} from '@angular/http';
 
 import {TabsPage} from '../tabs/tabs'
+import {LOGIN} from "../../constant/api";
 
 /**
  * Generated class for the LoginPage page.
@@ -32,37 +33,32 @@ export class LoginPage {
   }
 
   doLogin() {
-    // let loading = this.loadingCtrl.create({
-    //   content: 'Please wait...'
-    // });
-    // const hostUrl = localStorage.getItem('hostUrl');
-    //
-    // if (!hostUrl) {
-    //   this.presentNotConfigured();
-    // } else if (this.email == null || this.password == null) {
-    //   this.presentAlert();
-    // } else {
-    //   let credentials = {
-    //     UserEmail: this.email,
-    //     UserPassword: this.password
-    //   };
-    //
-    //   const apiLocation = `${hostUrl}/api/users/login`;
-    //
-    //   loading.present();
-    //   this.http
-    //     .post(apiLocation, credentials, {})
-    //     .subscribe(
-    //       data => {
-    //         console.log(data);
-    //         this.navCtrl.setRoot(TabsPage);
-    //       },
-    //       err => this.presentAlert()
-    //     );
-    //
-    //   loading.dismiss();
-    // }
-    this.navCtrl.setRoot(TabsPage);
+    let loading = this.loadingCtrl.create({
+      content: 'Please wait...'
+    });
+
+    if (this.email == null || this.password == null) {
+      this.presentAlert();
+    } else {
+      let credentials = {
+        UserEmail: this.email,
+        UserPassword: this.password
+      };
+
+      loading.present();
+      this.http
+        .post(LOGIN, credentials, {})
+        .subscribe(
+          data => {
+            const response = JSON.parse(data['_body']);
+            localStorage.setItem("TOKEN", response.UserToken);
+            this.navCtrl.setRoot(TabsPage);
+          },
+          err => this.presentAlert()
+        );
+
+      loading.dismiss();
+    }
   }
 
   presentAlert() {
@@ -72,48 +68,6 @@ export class LoginPage {
       buttons: ['OK']
     });
     alert.present();
-  }
-
-  askConfirmation() {
-    let confirm = this.alertCtrl.create({
-      title: 'Configure backend?',
-      message: 'Are you sure you want to configure backend? This action cannot be undone.',
-      buttons: [
-        {
-          text: 'No'
-        },
-        {
-          text: 'Yes',
-          handler: () => {
-            this.showConfigurationSettings();
-          }
-        }
-      ]
-    });
-    confirm.present();
-  }
-
-  showConfigurationSettings() {
-    let confirm = this.alertCtrl.create({
-      title: 'Configure backend',
-      message: 'Enter backend host and port',
-      inputs: [
-        {
-          name: 'hostUrl',
-          placeholder: 'Backend host and port'
-        }
-      ],
-      buttons: [
-        {
-          text: 'Save',
-          handler: data => {
-            localStorage.setItem('hostUrl', data.hostUrl);
-            this.showSuccess();
-          }
-        }
-      ]
-    });
-    confirm.present();
   }
 
   showSuccess() {
