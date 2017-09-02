@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {CounterPage} from "../counter/counter";
-import {CustomerPage} from "../customer/customer";
 
 /**
- * Generated class for the MasterPage page.
+ * Generated class for the CustomerPage page.
  *
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
@@ -12,19 +10,16 @@ import {CustomerPage} from "../customer/customer";
 
 @IonicPage()
 @Component({
-  selector: 'page-master',
-  templateUrl: 'master.html',
+  selector: 'page-customer',
+  templateUrl: 'customer.html',
 })
-export class MasterPage {
-
-  tabCounterRoot = CounterPage;
-  tabCustomerRoot = CustomerPage;
+export class CustomerPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MasterPage');
+    console.log('ionViewDidLoad CustomerPage');
   }
 
 }
