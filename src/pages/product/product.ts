@@ -32,6 +32,7 @@ export class ProductPage {
       .subscribe(
         data => {
           console.log(data);
+          this.products = data;
         }
       )
 
