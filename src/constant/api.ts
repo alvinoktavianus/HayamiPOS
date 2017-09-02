@@ -7,6 +7,8 @@ export const PRODUCTS = `${ENV.API_HOST}/api/products`;
 
 export const CUSTOMERS = `${ENV.API_HOST}/api/customers`;
 
+export const COUNTERS = `${ENV.API_HOST}/api/counters`;
+
 export function REQUEST_HEADERS() {
   let headers = new Headers();
   headers.append('TOKEN', localStorage.getItem('TOKEN'));

@@ -23,6 +23,7 @@ import {MasterDiscountPage} from "../pages/master/master-discount/master-discoun
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {AddCustomerPage} from "../pages/master/customer/add-customer/add-customer";
+import {AddCounterPage} from "../pages/master/counter/add-counter/add-counter";
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import {AddCustomerPage} from "../pages/master/customer/add-customer/add-custome
     MasterModelPage,
     MasterDiscountPage,
     AddCustomerPage,
+    AddCounterPage,
   ],
   imports: [
     BrowserModule,
@@ -66,6 +68,7 @@ import {AddCustomerPage} from "../pages/master/customer/add-customer/add-custome
     MasterModelPage,
     MasterDiscountPage,
     AddCustomerPage,
+    AddCounterPage,
   ],
   providers: [
     StatusBar,
