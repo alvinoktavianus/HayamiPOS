@@ -25,13 +25,7 @@ export class MasterModelPage {
               public navParams: NavParams,
               public http: Http) {
 
-    this.http
-      .get(MODELS, {headers: REQUEST_HEADERS()})
-      .map(res => res.json())
-      .subscribe(data => {
-        console.log(data);
-        this.models = data;
-      });
+    this.fetchAllData();
 
   }
 
@@ -43,4 +37,18 @@ export class MasterModelPage {
     this.navCtrl.push(AddModelPage);
   }
 
+  doRefresh(refresher) {
+    this.fetchAllData();
+    refresher.complete();
+  }
+
+  private fetchAllData() {
+    this.http
+      .get(MODELS, {headers: REQUEST_HEADERS()})
+      .map(res => res.json())
+      .subscribe(data => {
+        console.log(data);
+        this.models = data;
+      });
+  }
 }

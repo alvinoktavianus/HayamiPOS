@@ -12,6 +12,7 @@ export const COUNTERS = `${ENV.API_HOST}/api/counters`;
 export const NEW_COUNTERS = `${ENV.API_HOST}/api/counters/new`;
 
 export const MODELS = `${ENV.API_HOST}/api/models`;
+export const NEW_MODELS = `${ENV.API_HOST}/api/models/new`;
 
 export const TYPES = `${ENV.API_HOST}/api/types`;
 export const NEW_TYPES = `${ENV.API_HOST}/api/types/new`;
