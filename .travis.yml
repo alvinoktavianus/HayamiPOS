@@ -7,10 +7,11 @@ language: node_js
 node_js:
   - "7"
 
+before_install:
+  - npm install -g ionic cordova
+
 install:
-  - npm install -g ionic cordove
   - npm install
-  - bower install
 
 script:
   - ionic build
