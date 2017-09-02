@@ -11,6 +11,8 @@ export const COUNTERS = `${ENV.API_HOST}/api/counters`;
 
 export const MODELS = `${ENV.API_HOST}/api/models`;
 
+export const TYPES = `${ENV.API_HOST}/api/types`;
+
 export function REQUEST_HEADERS() {
   let headers = new Headers();
   headers.append('TOKEN', localStorage.getItem('TOKEN'));
