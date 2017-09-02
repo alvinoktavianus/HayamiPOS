@@ -25,14 +25,7 @@ export class CounterPage {
               public navParams: NavParams,
               public http: Http) {
 
-    this.http
-      .get(COUNTERS, {headers: REQUEST_HEADERS()})
-      .map(res => res.json())
-      .subscribe(
-        data => {
-          this.counters = data;
-        }
-      )
+    this.getCountersData();
 
   }
 
@@ -42,6 +35,22 @@ export class CounterPage {
 
   addNewCounter() {
     this.navCtrl.push(AddCounterPage);
+  }
+
+  doRefresh(refresher) {
+    this.getCountersData();
+    refresher.complete();
+  }
+
+  getCountersData() {
+    this.http
+      .get(COUNTERS, {headers: REQUEST_HEADERS()})
+      .map(res => res.json())
+      .subscribe(
+        data => {
+          this.counters = data;
+        }
+      );
   }
 
 }

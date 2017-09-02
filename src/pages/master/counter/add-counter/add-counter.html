@@ -15,4 +15,35 @@
 
 <ion-content padding>
 
+  <form (ngSubmit)="createNewCounter()">
+    <ion-list>
+      <ion-item>
+        <ion-label stacked>Email</ion-label>
+        <ion-input type="text" [(ngModel)]="counter.CounterEmail" name="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Name</ion-label>
+        <ion-input type="text" [(ngModel)]="counter.CounterName" name="name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Address</ion-label>
+        <ion-input type="text" [(ngModel)]="counter.CounterAddr" name="address"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>City</ion-label>
+        <ion-input type="text" [(ngModel)]="counter.CounterCity" name="city"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Postal Code</ion-label>
+        <ion-input type="number" [(ngModel)]="counter.CounterPosCode" name="postalcode" max="99999" min="0"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Phone Number</ion-label>
+        <ion-input type="text" [(ngModel)]="counter.CounterPhone" name="phone" maxlength="12"></ion-input>
+      </ion-item>
+      <br/>
+      <button ion-button type="submit" block>Save</button>
+    </ion-list>
+  </form>
+
 </ion-content>

@@ -8,6 +8,7 @@ export const PRODUCTS = `${ENV.API_HOST}/api/products`;
 export const CUSTOMERS = `${ENV.API_HOST}/api/customers`;
 
 export const COUNTERS = `${ENV.API_HOST}/api/counters`;
+export const NEW_COUNTERS = `${ENV.API_HOST}/api/counters/new`;
 
 export const MODELS = `${ENV.API_HOST}/api/models`;
 
