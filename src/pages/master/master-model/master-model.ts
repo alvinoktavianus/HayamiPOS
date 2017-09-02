@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {Http} from "@angular/http";
+import {MODELS, REQUEST_HEADERS} from "../../../constant/api";
+import 'rxjs/add/operator/map';
+import {AddModelPage} from "./add-model/add-model";
 
 /**
  * Generated class for the MasterModelPage page.
@@ -15,11 +19,28 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class MasterModelPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  models: any = [];
+
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public http: Http) {
+
+    this.http
+      .get(MODELS, {headers: REQUEST_HEADERS()})
+      .map(res => res.json())
+      .subscribe(data => {
+        console.log(data);
+        this.models = data;
+      });
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MasterModelPage');
+  }
+
+  addModel() {
+    this.navCtrl.push(AddModelPage);
   }
 
 }
