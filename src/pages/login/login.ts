@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, LoadingController, AlertController} from 'ionic-angular';
 import {Http} from '@angular/http';
+import 'rxjs/add/operator/map';
 
 import {TabsPage} from '../tabs/tabs'
 import {LOGIN} from "../../constant/api";
@@ -48,10 +49,10 @@ export class LoginPage {
       loading.present();
       this.http
         .post(LOGIN, credentials, {})
+        .map(res => res.json())
         .subscribe(
           data => {
-            const response = JSON.parse(data['_body']);
-            localStorage.setItem("TOKEN", response.UserToken);
+            localStorage.setItem("TOKEN", data.UserToken);
             this.navCtrl.setRoot(TabsPage);
           },
           err => this.presentAlert()
