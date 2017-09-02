@@ -26,6 +26,7 @@ import {AddCustomerPage} from "../pages/master/customer/add-customer/add-custome
 import {AddCounterPage} from "../pages/master/counter/add-counter/add-counter";
 import {AddModelPage} from "../pages/master/master-model/add-model/add-model";
 import {AddTypePage} from "../pages/master/master-type/add-type/add-type";
+import {AddDiscountsPage} from "../pages/master/master-discount/add-discounts/add-discounts";
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import {AddTypePage} from "../pages/master/master-type/add-type/add-type";
     AddCounterPage,
     AddModelPage,
     AddTypePage,
+    AddDiscountsPage,
   ],
   imports: [
     BrowserModule,
@@ -75,6 +77,7 @@ import {AddTypePage} from "../pages/master/master-type/add-type/add-type";
     AddCounterPage,
     AddModelPage,
     AddTypePage,
+    AddDiscountsPage,
   ],
   providers: [
     StatusBar,

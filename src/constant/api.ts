@@ -17,6 +17,8 @@ export const NEW_MODELS = `${ENV.API_HOST}/api/models/new`;
 export const TYPES = `${ENV.API_HOST}/api/types`;
 export const NEW_TYPES = `${ENV.API_HOST}/api/types/new`;
 
+export const DISCOUNTS = `${ENV.API_HOST}/api/discounts`;
+
 export function REQUEST_HEADERS() {
   let headers = new Headers();
   headers.append('TOKEN', localStorage.getItem('TOKEN'));
