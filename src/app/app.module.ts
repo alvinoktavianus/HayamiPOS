@@ -16,6 +16,7 @@ import {MasterPage} from '../pages/master/master';
 import {CounterPage} from "../pages/master/counter/counter";
 import {CustomerPage} from "../pages/master/customer/customer";
 import {MasterProductPage} from "../pages/master/master-product/master-product";
+import {MasterTypePage} from "../pages/master/master-type/master-type";
 
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
@@ -34,6 +35,7 @@ import {SplashScreen} from '@ionic-native/splash-screen';
     CounterPage,
     CustomerPage,
     MasterProductPage,
+    MasterTypePage,
   ],
   imports: [
     BrowserModule,
@@ -54,6 +56,7 @@ import {SplashScreen} from '@ionic-native/splash-screen';
     CounterPage,
     CustomerPage,
     MasterProductPage,
+    MasterTypePage,
   ],
   providers: [
     StatusBar,
