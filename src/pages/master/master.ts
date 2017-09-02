@@ -4,6 +4,7 @@ import {CounterPage} from "./counter/counter";
 import {CustomerPage} from "./customer/customer";
 import {MasterProductPage} from "./master-product/master-product";
 import {MasterTypePage} from "./master-type/master-type";
+import {MasterModelPage} from "./master-model/master-model";
 
 /**
  * Generated class for the MasterPage page.
@@ -23,6 +24,7 @@ export class MasterPage {
   tabCustomerRoot = CustomerPage;
   tabProductRoot = MasterProductPage;
   tabTypeRoot = MasterTypePage;
+  tabModelRoot = MasterModelPage;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
