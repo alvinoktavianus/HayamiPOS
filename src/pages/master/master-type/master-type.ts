@@ -25,14 +25,7 @@ export class MasterTypePage {
               public navParams: NavParams,
               public http: Http) {
 
-    this.http
-      .get(TYPES, {headers: REQUEST_HEADERS()})
-      .map(res => res.json())
-      .subscribe(
-        data => {
-          this.types = data;
-        }
-      );
+    this.fetchAllData();
 
   }
 
@@ -42,6 +35,22 @@ export class MasterTypePage {
 
   addTypes() {
     this.navCtrl.push(AddTypePage);
+  }
+
+  fetchAllData() {
+    this.http
+      .get(TYPES, {headers: REQUEST_HEADERS()})
+      .map(res => res.json())
+      .subscribe(
+        data => {
+          this.types = data;
+        }
+      );
+  }
+
+  doRefresh(refresher) {
+    this.fetchAllData();
+    refresher.complete();
   }
 
 }

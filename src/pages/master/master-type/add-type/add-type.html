@@ -14,5 +14,18 @@
 
 
 <ion-content padding>
-
+  <form (ngSubmit)="addNewType()">
+    <ion-list>
+      <ion-item>
+        <ion-label stacked>Name</ion-label>
+        <ion-input type="text" [(ngModel)]="newType.TypeName" name="code"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Price</ion-label>
+        <ion-input type="number" min="0" step="0.01" [(ngModel)]="newType.TypePrice" name="price"></ion-input>
+      </ion-item>
+      <br/>
+      <button ion-button type="submit" block>Save</button>
+    </ion-list>
+  </form>
 </ion-content>

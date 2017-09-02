@@ -14,6 +14,7 @@ export const NEW_COUNTERS = `${ENV.API_HOST}/api/counters/new`;
 export const MODELS = `${ENV.API_HOST}/api/models`;
 
 export const TYPES = `${ENV.API_HOST}/api/types`;
+export const NEW_TYPES = `${ENV.API_HOST}/api/types/new`;
 
 export function REQUEST_HEADERS() {
   let headers = new Headers();

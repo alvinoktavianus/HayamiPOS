@@ -11,6 +11,10 @@
 </ion-header>
 <ion-content padding>
 
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <button ion-button clear (click)="addTypes()">+ Add</button>
 
   <div *ngIf="types.length == 0">
