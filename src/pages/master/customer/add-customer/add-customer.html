@@ -11,11 +11,48 @@
 </ion-header>
 
 <ion-content padding>
-
-  <h3>Add Customers</h3>
-
-  <form>
-
+  <form (ngSubmit)="addNewCustomers()">
+    <ion-list>
+      <ion-item>
+        <ion-label stacked>Code</ion-label>
+        <ion-input type="text" [(ngModel)]="newCustomers.CustCode" name="code"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Description</ion-label>
+        <ion-input type="text" [(ngModel)]="newCustomers.CustDesc" name="description"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Counter</ion-label>
+        <ion-select [(ngModel)]="newCustomers.CounterID" name="counterid">
+          <ion-option *ngFor="let counter of counters" [value]="counter.CounterID">{{counter.CounterName}}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Email</ion-label>
+        <ion-input type="text" [(ngModel)]="newCustomers.CustEmail" name="email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Name</ion-label>
+        <ion-input type="text" [(ngModel)]="newCustomers.CustName" name="name"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Address</ion-label>
+        <ion-input type="text" [(ngModel)]="newCustomers.CustAddr" name="address"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>City</ion-label>
+        <ion-input type="text" [(ngModel)]="newCustomers.CustCity" name="city"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Postal Code</ion-label>
+        <ion-input type="number" [(ngModel)]="newCustomers.CustPosCode" name="postalcode" (ionChange)="handleNumberChange($event, newCustomers.CounterPosCode)"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Phone Number</ion-label>
+        <ion-input type="text" [(ngModel)]="newCustomers.CustPhone" name="phone" (ionChange)="handleNumberChange($event, newCustomers.CounterPhone)"></ion-input>
+      </ion-item>
+      <br/>
+      <button ion-button type="submit" block>Save</button>
+    </ion-list>
   </form>
-
 </ion-content>
