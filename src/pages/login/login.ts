@@ -46,6 +46,8 @@ export class LoginPage {
         UserPassword: this.password
       };
 
+      console.log(LOGIN);
+
       loading.present();
       this.http
         .post(LOGIN, credentials, {})

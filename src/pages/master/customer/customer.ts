@@ -1,5 +1,10 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {Http} from "@angular/http";
+import {CUSTOMERS, REQUEST_HEADERS} from "../../../constant/api";
+
+import 'rxjs/add/operator/map';
+import {AddCustomerPage} from "./add-customer/add-customer";
 
 /**
  * Generated class for the CustomerPage page.
@@ -15,11 +20,31 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class CustomerPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public customers: any = [];
+
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public http: Http) {
+
+    this.http
+      .get(CUSTOMERS, {headers: REQUEST_HEADERS()})
+      .map(res => res.json())
+      .subscribe(
+        data => {
+          console.log(data);
+          this.customers = data;
+          console.log(this.customers);
+        }
+      )
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CustomerPage');
+  }
+
+  addCustomer() {
+    this.navCtrl.push(AddCustomerPage);
   }
 
 }
