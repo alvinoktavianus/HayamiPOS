@@ -25,6 +25,7 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {AddCustomerPage} from "../pages/master/customer/add-customer/add-customer";
 import {AddCounterPage} from "../pages/master/counter/add-counter/add-counter";
 import {AddModelPage} from "../pages/master/master-model/add-model/add-model";
+import {AddTypePage} from "../pages/master/master-type/add-type/add-type";
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import {AddModelPage} from "../pages/master/master-model/add-model/add-model";
     AddCustomerPage,
     AddCounterPage,
     AddModelPage,
+    AddTypePage,
   ],
   imports: [
     BrowserModule,
@@ -72,6 +74,7 @@ import {AddModelPage} from "../pages/master/master-model/add-model/add-model";
     AddCustomerPage,
     AddCounterPage,
     AddModelPage,
+    AddTypePage,
   ],
   providers: [
     StatusBar,
