@@ -7,12 +7,28 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>AddDiscounts</ion-title>
+    <ion-title>Add Discount</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
+  <form (ngSubmit)="addNewDiscount()">
+    <ion-list>
+      <ion-item>
+        <ion-label stacked>Customer Name</ion-label>
+        <ion-select [(ngModel)]="newDiscount.CustomerID" name="custid">
+          <ion-option *ngFor="let customer of customers" [value]="customer.CustomerID">{{customer.CustName}}
+          </ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Discount</ion-label>
+        <ion-input type="number" [(ngModel)]="newDiscount.DiscDivide" name="disdivide" step="0.001" min="0"></ion-input>
+      </ion-item>
+      <br/>
+      <button ion-button type="submit" block>Save</button>
+    </ion-list>
+  </form>
 </ion-content>

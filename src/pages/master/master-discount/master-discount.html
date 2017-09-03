@@ -22,9 +22,24 @@
   </div>
 
   <div *ngIf="discounts.length > 0">
-    <ion-card *ngFor="let model of models">
+    <ion-card *ngFor="let discount of discounts">
       <ion-card-content>
-        <p>{{model.ModelName}}</p>
+        <ion-grid>
+          <ion-row>
+            <ion-col col-6>
+              <ion-row>
+                <ion-col col-6>Customer Name</ion-col>
+                <ion-col col-6>{{customers[discount.CustomerID].CustName}}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-6>Discount</ion-col>
+                <ion-col col-6>{{discount.DiscDivide}}</ion-col>
+              </ion-row>
+            </ion-col>
+            <ion-col col-6>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
       </ion-card-content>
     </ion-card>
   </div>

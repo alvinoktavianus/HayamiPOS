@@ -25,6 +25,7 @@ export class MasterDiscountPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public http: Http) {
+    this.fetchAllData();
   }
 
   ionViewDidLoad() {
