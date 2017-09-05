@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {Http} from "@angular/http";
+import {AddProductPage} from "./add-product/add-product";
 
 /**
  * Generated class for the MasterProductPage page.
@@ -15,11 +17,22 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class MasterProductPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  types: any = [];
+  models: any = [];
+
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public http: Http) {
+
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad MasterProductPage');
+  }
+
+  addProducts() {
+    this.navCtrl.push(AddProductPage);
   }
 
 }
