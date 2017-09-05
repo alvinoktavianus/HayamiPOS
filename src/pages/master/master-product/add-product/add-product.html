@@ -30,7 +30,7 @@
       </ion-item>
       <ion-item>
         <ion-label stacked>Product Type</ion-label>
-        <ion-select [(ngModel)]="newProduct.TypeID" name="typeid">
+        <ion-select [(ngModel)]="newProduct.TypeID" name="typeid" (ionChange)="onChangeType()">
           <ion-option *ngFor="let type of types" [value]="type.TypeID">{{type.TypeName}}</ion-option>
         </ion-select>
       </ion-item>
@@ -42,7 +42,11 @@
       </ion-item>
       <ion-item>
         <ion-label stacked>Price</ion-label>
-        <ion-input type="text" [disabled]="true">{{hashesTypes[newProduct.TypeID].TypePrice}}</ion-input>
+        <ion-input type="text" [disabled]="true" [(ngModel)]="newProduct.TypePrice" name="typeprice"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label stacked>Storage</ion-label>
+        <ion-input type="text" name="storage" (ionFocus)="addStorage()" value="Add Storage" [readonly]="true"></ion-input>
       </ion-item>
       <br/>
       <button ion-button type="submit" block>Save</button>

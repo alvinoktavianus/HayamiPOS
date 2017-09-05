@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {AlertController, IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 import {Http} from "@angular/http";
 import {MODELS, REQUEST_HEADERS, TYPES} from "../../../../constant/api";
 
@@ -24,7 +24,9 @@ export class AddProductPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public http: Http) {
+              public http: Http,
+              public modalCtrl: ModalController) {
+    this.fetchAllData();
   }
 
   ionViewDidLoad() {
@@ -55,6 +57,20 @@ export class AddProductPage {
 
   addNewProduct() {
     console.log(this.newProduct);
+  }
+
+  onChangeType() {
+    this.types.forEach(type => {
+      if (type.TypeID == this.newProduct.TypeID) {
+        this.newProduct.TypePrice = type.TypePrice;
+      }
+    });
+  }
+
+  addStorage() {
+    let modal = this.modalCtrl.create("dad");
+    modal.present();
+    console.log("clicked");
   }
 
 }
