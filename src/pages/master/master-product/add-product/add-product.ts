@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {AlertController, IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 import {Http} from "@angular/http";
 import {MODELS, REQUEST_HEADERS, TYPES} from "../../../../constant/api";
+import {StorageModalPage} from "./storage-modal/storage-modal";
 
 /**
  * Generated class for the AddProductPage page.
@@ -68,9 +69,8 @@ export class AddProductPage {
   }
 
   addStorage() {
-    let modal = this.modalCtrl.create("dad");
+    let modal = this.modalCtrl.create(StorageModalPage);
     modal.present();
-    console.log("clicked");
   }
 
 }

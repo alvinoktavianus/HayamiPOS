@@ -28,6 +28,7 @@ import {AddModelPage} from "../pages/master/master-model/add-model/add-model";
 import {AddTypePage} from "../pages/master/master-type/add-type/add-type";
 import {AddDiscountsPage} from "../pages/master/master-discount/add-discounts/add-discounts";
 import {AddProductPage} from "../pages/master/master-product/add-product/add-product";
+import {StorageModalPage} from "../pages/master/master-product/add-product/storage-modal/storage-modal";
 
 @NgModule({
   declarations: [
@@ -52,6 +53,7 @@ import {AddProductPage} from "../pages/master/master-product/add-product/add-pro
     AddTypePage,
     AddDiscountsPage,
     AddProductPage,
+    StorageModalPage,
   ],
   imports: [
     BrowserModule,
@@ -81,6 +83,7 @@ import {AddProductPage} from "../pages/master/master-product/add-product/add-pro
     AddTypePage,
     AddDiscountsPage,
     AddProductPage,
+    StorageModalPage,
   ],
   providers: [
     StatusBar,
