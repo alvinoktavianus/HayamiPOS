@@ -29,6 +29,8 @@ import {AddTypePage} from "../pages/master/master-type/add-type/add-type";
 import {AddDiscountsPage} from "../pages/master/master-discount/add-discounts/add-discounts";
 import {AddProductPage} from "../pages/master/master-product/add-product/add-product";
 import {StorageModalPage} from "../pages/master/master-product/add-product/storage-modal/storage-modal";
+import {MasterStoragePage} from "../pages/master/master-storage/master-storage";
+import {AddStoragePage} from "../pages/master/master-storage/add-storage/add-storage";
 
 @NgModule({
   declarations: [
@@ -47,12 +49,14 @@ import {StorageModalPage} from "../pages/master/master-product/add-product/stora
     MasterTypePage,
     MasterModelPage,
     MasterDiscountPage,
+    MasterStoragePage,
     AddCustomerPage,
     AddCounterPage,
     AddModelPage,
     AddTypePage,
     AddDiscountsPage,
     AddProductPage,
+    AddStoragePage,
     StorageModalPage,
   ],
   imports: [
@@ -77,12 +81,14 @@ import {StorageModalPage} from "../pages/master/master-product/add-product/stora
     MasterTypePage,
     MasterModelPage,
     MasterDiscountPage,
+    MasterStoragePage,
     AddCustomerPage,
     AddCounterPage,
     AddModelPage,
     AddTypePage,
     AddDiscountsPage,
     AddProductPage,
+    AddStoragePage,
     StorageModalPage,
   ],
   providers: [

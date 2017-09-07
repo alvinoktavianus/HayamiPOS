@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {AlertController, IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 import {Http} from "@angular/http";
 import {MODELS, REQUEST_HEADERS, TYPES} from "../../../../constant/api";
 import {StorageModalPage} from "./storage-modal/storage-modal";
