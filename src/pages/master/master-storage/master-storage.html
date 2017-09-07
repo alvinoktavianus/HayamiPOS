@@ -19,4 +19,35 @@
   </ion-refresher>
 
   <button ion-button clear (click)="addNewStorage()">+ Add</button>
+
+  <div *ngIf="storages.length == 0">
+    <h3>No data found on our system</h3>
+  </div>
+
+  <div *ngIf="storages.length > 0">
+    <ion-card *ngFor="let storage of storages">
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col col-6>
+              <ion-row>
+                <ion-col col-6>Storage Name</ion-col>
+                <ion-col col-6>{{storage.StorageName}}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-6>Storage Capacity</ion-col>
+                <ion-col col-6>{{storage.StorageCapacity}}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-6>Storage Stock</ion-col>
+                <ion-col col-6>{{storage.StorageStock}}</ion-col>
+              </ion-row>
+            </ion-col>
+            <ion-col col-6>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

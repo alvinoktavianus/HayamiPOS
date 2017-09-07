@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {AddStoragePage} from "./add-storage/add-storage";
+import {Http} from "@angular/http";
+import {REQUEST_HEADERS, STORAGES} from "../../../constant/api";
 
 /**
  * Generated class for the MasterStoragePage page.
@@ -16,8 +18,12 @@ import {AddStoragePage} from "./add-storage/add-storage";
 })
 export class MasterStoragePage {
 
+  storages: any = [];
+
   constructor(public navCtrl: NavController,
-              public navParams: NavParams) {
+              public navParams: NavParams,
+              public http: Http) {
+    this.fetchAllData();
   }
 
   ionViewDidLoad() {
@@ -26,6 +32,21 @@ export class MasterStoragePage {
 
   addNewStorage() {
     this.navCtrl.push(AddStoragePage);
+  }
+
+  fetchAllData() {
+    this.http.get(STORAGES, {headers: REQUEST_HEADERS()})
+      .map(res => res.json())
+      .subscribe(
+        data => {
+          this.storages = data;
+        }
+      );
+  }
+
+  doRefresh(refresher) {
+    this.fetchAllData();
+    refresher.complete();
   }
 
 }
