@@ -6,6 +6,7 @@ import {MasterProductPage} from "./master-product/master-product";
 import {MasterTypePage} from "./master-type/master-type";
 import {MasterModelPage} from "./master-model/master-model";
 import {MasterDiscountPage} from "./master-discount/master-discount";
+import {MasterStoragePage} from "./master-storage/master-storage";
 
 /**
  * Generated class for the MasterPage page.
@@ -27,6 +28,7 @@ export class MasterPage {
   tabTypeRoot = MasterTypePage;
   tabModelRoot = MasterModelPage;
   tabDiscountRoot = MasterDiscountPage;
+  tabStorageRoot = MasterStoragePage;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
