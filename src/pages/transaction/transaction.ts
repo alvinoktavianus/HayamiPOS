@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {IonicPage} from 'ionic-angular';
+import {TransactionOutstandingPage} from "./transaction-outstanding/transaction-outstanding";
+import {TransactionShipmentPage} from "./transaction-shipment/transaction-shipment";
+import {TransactionCompletedPage} from "./transaction-completed/transaction-completed";
 
 /**
  * Generated class for the TransactionPage page.
@@ -15,11 +18,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class TransactionPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TransactionPage');
-  }
+  tabOutstandingRoot = TransactionOutstandingPage;
+  tabShipmentRoot = TransactionShipmentPage;
+  tabCompletedRoot = TransactionCompletedPage;
 
 }
