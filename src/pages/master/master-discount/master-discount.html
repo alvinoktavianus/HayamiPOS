@@ -21,7 +21,7 @@
     <h3>No data found on our system</h3>
   </div>
 
-  <div *ngIf="discounts.length > 0">
+  <div *ngIf="discounts.length > 0 && customers">
     <ion-card *ngFor="let discount of discounts">
       <ion-card-content>
         <ion-grid>

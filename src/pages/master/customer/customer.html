@@ -21,7 +21,7 @@
     <h3>No data found on our system</h3>
   </div>
 
-  <div *ngIf="customers.length > 0">
+  <div *ngIf="customers.length > 0 && counters">
     <ion-card *ngFor="let customer of customers">
       <ion-card-content>
         <ion-grid>
