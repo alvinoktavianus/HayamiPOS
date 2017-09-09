@@ -17,4 +17,59 @@
 
   <button ion-button clear (click)="addProducts()">+ Add</button>
 
+  <div *ngIf="products.length == 0">
+    <h3>No data found on our system</h3>
+  </div>
+
+  <div *ngIf="products.length > 0 && types && models">
+    <ion-card *ngFor="let product of products">
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col col-6>
+              <ion-row>
+                <ion-col col-6>Product Code</ion-col>
+                <ion-col col-6>{{product.ProductCode}}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-6>Product Description</ion-col>
+                <ion-col col-6>{{product.ProductName}}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-6>Type</ion-col>
+                <ion-col col-6>{{types[product.TypeID].TypeName}}</ion-col>
+              </ion-row>
+            </ion-col>
+            <ion-col col-6>
+              <ion-row>
+                <ion-col col-6>Model</ion-col>
+                <ion-col col-6>{{models[product.ModelID].ModelName}}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-6>Price</ion-col>
+                <ion-col col-6>{{types[product.TypeID].TypePrice}}</ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col col-6>Action</ion-col>
+                <ion-col col-6>
+                  <ion-row>
+                    <ion-col col-4>
+                      <button ion-button clear (click)="editSingleProduct()">Edit</button>
+                    </ion-col>
+                    <ion-col col-4>
+                      <button ion-button clear (click)="transferSingleProduct()">Transfer</button>
+                    </ion-col>
+                    <ion-col col-4>
+                      <button ion-button clear (click)="clearSingleProduct()">Clear</button>
+                    </ion-col>
+                  </ion-row>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
 </ion-content>
