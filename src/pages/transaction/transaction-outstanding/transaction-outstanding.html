@@ -14,12 +14,6 @@
 
 
 <ion-content padding>
-  <ion-refresher (ionRefresh)="doRefresh($event)">
-    <ion-refresher-content></ion-refresher-content>
-  </ion-refresher>
-
-  <button ion-button clear (click)="addTypes()">+ Add</button>
-
   <div *ngIf="transactions.length == 0">
     <h3>No data found on our system</h3>
   </div>
@@ -36,7 +30,7 @@
               </ion-row>
               <ion-row>
                 <ion-col col-6>Transaction Date</ion-col>
-                <ion-col col-6></ion-col>
+                <ion-col col-6>{{transaction.TransDate | date: 'd MMM yyyy'}}</ion-col>
               </ion-row>
               <ion-row>
                 <ion-col col-6>Customer Name</ion-col>
@@ -44,11 +38,11 @@
               </ion-row>
               <ion-row>
                 <ion-col col-6>Discount Customer</ion-col>
-                <ion-col col-6>{{transaction.TotalDiscount}}</ion-col>
+                <ion-col col-6>Rp. {{transaction.TotalDiscount | number: 0}}</ion-col>
               </ion-row>
               <ion-row>
                 <ion-col col-6>Total</ion-col>
-                <ion-col col-6>{{transaction.TotalPrice}}</ion-col>
+                <ion-col col-6>Rp. {{transaction.TotalPrice | number: 0}}</ion-col>
               </ion-row>
             </ion-col>
             <ion-col col-6>
