@@ -36,7 +36,7 @@ export class TransactionCompletedPage {
       .subscribe(
         data => {
           data.forEach(tr => {
-            if (tr.FgStatus == 'O') this.transactions.push(tr);
+            if (tr.FgStatus == 'C') this.transactions.push(tr);
           });
         }
       );
