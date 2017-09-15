@@ -17,13 +17,20 @@
   <form (ngSubmit)="createTransaction()">
     <ion-list>
       <ion-item>
+        <ion-label stacked>Select target</ion-label>
+        <ion-select name="target" [(ngModel)]="transactionData.target">
+          <ion-option [value]="customer">customer</ion-option>
+          <ion-option [value]="counter">counter</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item *ngIf="transactionData.target == 'customer'">
         <ion-label stacked>Customer</ion-label>
         <ion-select [(ngModel)]="transactionData.CustomerID" name="custid">
           <ion-option *ngFor="let customer of customers" [value]="customer.CustomerID">{{customer.CustName}}
           </ion-option>
         </ion-select>
       </ion-item>
-      <ion-item>
+      <ion-item *ngIf="transactionData.target == 'counter'">
         <ion-label stacked>Counter</ion-label>
         <ion-select [(ngModel)]="transactionData.CounterID" name="counterid">
           <ion-option *ngFor="let counter of counters" [value]="counter.CounterID">{{counter.CounterName}}
@@ -42,16 +49,20 @@
     <h5>Product</h5>
     <ion-row *ngFor="let detail of transactionData.TransactionDt">
       <ion-col col-3>
-        <ion-select [(ngModel)]="detail.ProductHdID" name="productid" placeholder="Select Product" style="max-width: 100%;">
+        <ion-select [(ngModel)]="detail.ProductHdID" name="productid" placeholder="Select Product"
+                    style="max-width: 100%;">
           <ion-option *ngFor="let product of products" [value]="product.ProductHdID">{{product.ProductName}}
           </ion-option>
         </ion-select>
       </ion-col>
       <ion-col col-3>
-        <ion-input type="text" [(ngModel)]="detail.ProductQty" name="qty" placeholder="Qty" style="max-width: 100%;"></ion-input>
+        <ion-input type="text" [(ngModel)]="detail.ProductQty" name="qty" placeholder="Qty"
+                   style="max-width: 100%;"></ion-input>
       </ion-col>
       <ion-col col-3>
-        <ion-input type="text" name="totaleachprice" readonly placeholder="Sub-total" style="max-width: 100%;">{{detail.ProductQty | number: 0}}</ion-input>
+        <ion-input type="text" name="totaleachprice" readonly placeholder="Sub-total" style="max-width: 100%;">
+          {{detail.ProductQty | number: 0}}
+        </ion-input>
       </ion-col>
       <ion-col col-3>
         <button ion-button (click)="addRow()">Add</button>

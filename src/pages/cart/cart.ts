@@ -24,6 +24,7 @@ export class CartPage {
   models: any = [];
 
   transactionData: object = {
+    target: null,
     TotalDiscount: 0,
     TransactionDt: [{}]
   };
