@@ -34,6 +34,7 @@ import {AddStoragePage} from "../pages/master/master-storage/add-storage/add-sto
 import {TransactionOutstandingPage} from "../pages/transaction/transaction-outstanding/transaction-outstanding";
 import {TransactionShipmentPage} from "../pages/transaction/transaction-shipment/transaction-shipment";
 import {TransactionCompletedPage} from "../pages/transaction/transaction-completed/transaction-completed";
+import {ProductDetailModalPage} from "../pages/product/product-detail-modal/product-detail-modal";
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import {TransactionCompletedPage} from "../pages/transaction/transaction-complet
     TransactionOutstandingPage,
     TransactionShipmentPage,
     TransactionCompletedPage,
+    ProductDetailModalPage
   ],
   imports: [
     BrowserModule,
@@ -99,6 +101,7 @@ import {TransactionCompletedPage} from "../pages/transaction/transaction-complet
     TransactionOutstandingPage,
     TransactionShipmentPage,
     TransactionCompletedPage,
+    ProductDetailModalPage
   ],
   providers: [
     StatusBar,
