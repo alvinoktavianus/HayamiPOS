@@ -7,42 +7,81 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Detail Product</ion-title>
-    <!--<ion-title>{{product.ProductName}}</ion-title>-->
+    <ion-title>{{product.ProductName}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-
-  <!--<ion-list>-->
-    <!--<ion-item>-->
-      <!--<ion-card-content>-->
-        <!--<ion-grid>-->
-          <!--<ion-row>-->
-            <!--<ion-col>Product Code</ion-col>-->
-            <!--<ion-col>{{product.ProductCode}}</ion-col>-->
-          <!--</ion-row>-->
-          <!--<ion-row>-->
-            <!--<ion-col>Product Description</ion-col>-->
-            <!--<ion-col>{{product.ProductDesc}}</ion-col>-->
-          <!--</ion-row>-->
-          <!--<ion-row>-->
-            <!--<ion-col>Product Type</ion-col>-->
-            <!--<ion-col>{{type[product.TypeId].TypeName}}</ion-col>-->
-          <!--</ion-row>-->
-          <!--<ion-row>-->
-            <!--<ion-col>Model</ion-col>-->
-            <!--<ion-col>{{model[product.ModelId].ModelName}}</ion-col>-->
-          <!--</ion-row>-->
-          <!--<ion-row>-->
-            <!--<ion-col>Price</ion-col>-->
-            <!--<ion-col>{{type[product.TypeId].TypePrice}}</ion-col>-->
-          <!--</ion-row>-->
-        <!--</ion-grid>-->
-      <!--</ion-card-content>-->
-
-    <!--</ion-item>-->
-  <!--</ion-list>-->
+  <h3>Detail Product</h3>
+  <hr/>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-4>Product Code</ion-col>
+      <ion-col col-8>{{product.ProductCode}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4>Product Description</ion-col>
+      <ion-col col-8>{{product.ProductDesc}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4>Product Type</ion-col>
+      <ion-col col-8>{{types[product.TypeID].TypeName}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4>Model</ion-col>
+      <ion-col col-8>{{models[product.ModelID].ModelName}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4>Size</ion-col>
+      <ion-col col-8>
+        <ion-select [(ngModel)]="transactionDt.ProductSize" name="productSize">
+          <ion-option selected disabled>Please select</ion-option>
+          <ion-option *ngFor="let dt of product.ProductDts" [value]="dt.ProductSize">{{dt.ProductSize}}</ion-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4>Quantity</ion-col>
+      <ion-col col-8>
+        <ion-input [(ngModel)]="transactionDt.Qty" disabled></ion-input>
+        <button ion-button (click)="addQty($event)" small>+</button>
+        <button ion-button (click)="decreaseQty($event)" small>-</button>
+      </ion-col>
+      <ion-col col-4></ion-col>
+      <ion-col col-8>
+        <small *ngIf="transactionDt.ProductSize">Stock {{stock[transactionDt.ProductSize]}} pcs</small>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4>Ammount Discount</ion-col>
+      <ion-col col-8>
+        <ion-select [(ngModel)]="transactionDt.AddDiscountType" name="discountType">
+          <ion-option selected [value]="'P'">%</ion-option>
+          <ion-option [value]="'N'">Rp.</ion-option>
+        </ion-select>
+        <ion-input
+          [ngModel]="transactionDt.AddDiscountValue"
+          (ngModelChange)="validateDiscount($event)"
+          placeholder="Input discount value here"></ion-input>
+      </ion-col>
+      <ion-col col-4></ion-col>
+      <ion-col col-8>
+        <small>Amount discount: {{totalDiscount}}</small>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4></ion-col>
+      <ion-col col-8></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4></ion-col>
+      <ion-col col-8></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4></ion-col>
+      <ion-col col-8></ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

@@ -20,7 +20,7 @@ import {ProductDetailModalPage} from "./product-detail-modal/product-detail-moda
 export class ProductPage {
 
   products: any;
-  types: any;
+  types: any = {};
   models: any = {};
   customers: any;
   counters: any;
@@ -49,7 +49,10 @@ export class ProductPage {
       .map(res => res.json())
       .subscribe(
         data => {
-          this.types = data;
+          data.forEach(type => {
+            // console.log(type);
+            this.types[type.TypeID] = type;
+          });
         }
       );
 
@@ -81,10 +84,6 @@ export class ProductPage {
           this.counters = data;
         }
       );
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ProductPage');
   }
 
   openModal = (products) => {
