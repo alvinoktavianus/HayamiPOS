@@ -7,12 +7,41 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>{{product.ProductName}}</ion-title>
+    <ion-title>Detail Product</ion-title>
+    <!--<ion-title>{{product.ProductName}}</ion-title>-->
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+  <ion-list>
+    <ion-item>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col>Product Code</ion-col>
+            <ion-col>{{product.ProductCode}}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>Product Description</ion-col>
+            <ion-col>{{product.ProductDesc}}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>Product Type</ion-col>
+            <ion-col>{{type[product.TypeId].TypeName}}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>Model</ion-col>
+            <ion-col>{{model[product.ModelId].ModelName}}</ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>Price</ion-col>
+            <ion-col>{{type[product.TypeId].TypePrice}}</ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
 
+    </ion-item>
+  </ion-list>
 </ion-content>
