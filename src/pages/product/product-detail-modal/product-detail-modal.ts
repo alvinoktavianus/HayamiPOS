@@ -16,15 +16,19 @@ import {IonicPage, NavController, NavParams} from 'ionic-angular';
 export class ProductDetailModalPage {
 
   product: object = {};
-  types: object = {};
+  types: any = [];
   models: object = {};
+  customers: any = [];
+  counters: any = [];
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams) {
     console.log(this.navParams);
     this.product = {...navParams.data.product};
-    this.types = {...navParams.data.type};
+    this.types = [...navParams.data.type];
     this.models = {...navParams.data.model};
+    this.customers = [...navParams.data.customers];
+    this.customers = [...navParams.data.counters];
   }
 
 }
