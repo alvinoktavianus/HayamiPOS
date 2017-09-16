@@ -27,6 +27,7 @@ export class ProductDetailModalPage {
   };
   stock: any = {};
   totalDiscount = 0;
+  itemPrice;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -41,6 +42,9 @@ export class ProductDetailModalPage {
     this.product['ProductDts'].forEach(pd => {
       this.stock[pd.ProductSize] = pd.ProductQty;
     });
+
+    this.itemPrice = this.types[this.product['TypeID']].TypePrice;
+
   }
 
   onClickAddToCard() {
@@ -79,16 +83,16 @@ export class ProductDetailModalPage {
     alert.present();
   }
 
-  validateDiscount(event) {
+  validateDiscount() {
     let discountValue = this.transactionDt.AddDiscountValue;
     switch (this.transactionDt.AddDiscountType) {
       case 'P':
-        // if (!isNaN(discountValue) && !(discountValue < 0 && discountValue > 100))
-        // this.totalDiscount=
+        if (!isNaN(discountValue) && !(discountValue < 0 && discountValue > 100))
+          this.totalDiscount = this.transactionDt.Qty ? (discountValue / 100) * this.itemPrice : 0;
         break;
       case 'N':
-        // if (isNaN(this.transactionDt.Qty) || this.transactionDt.Qty < 0)
-        // event.preventDefault();
+        if (isNaN(this.transactionDt.Qty) || this.transactionDt.Qty < 0)
+          this.totalDiscount = discountValue;
         break;
     }
   }

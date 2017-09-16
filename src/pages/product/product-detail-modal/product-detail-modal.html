@@ -63,7 +63,7 @@
         </ion-select>
         <ion-input
           [ngModel]="transactionDt.AddDiscountValue"
-          (ngModelChange)="validateDiscount($event)"
+          (ngModelChange)="validateDiscount()"
           placeholder="Input discount value here"></ion-input>
       </ion-col>
       <ion-col col-4></ion-col>
@@ -72,16 +72,16 @@
       </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col col-4></ion-col>
-      <ion-col col-8></ion-col>
+      <ion-col col-4>Discount Description</ion-col>
+      <ion-col col-8>
+        <ion-input
+          [ngModel]="transactionDt.AddDiscountDesc"
+          placeholder="Please input discount description"></ion-input>
+      </ion-col>
     </ion-row>
     <ion-row>
-      <ion-col col-4></ion-col>
-      <ion-col col-8></ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col col-4></ion-col>
-      <ion-col col-8></ion-col>
+      <ion-col col-4>Total Price</ion-col>
+      <ion-col col-8>Rp. {{(transactionDt.Qty * itemPrice) - totalDiscount | number:0}}</ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
