@@ -39,7 +39,7 @@
     padding: 0px 0px 0px 0px !important;
     margin-top: -5px !important;
     margin-left: -11px;" col-8>
-        <ion-select [(ngModel)]="transactionDt.ProductSize" name="productSize">
+        <ion-select style="max-width: 100%;" [(ngModel)]="transactionDt.ProductSize" name="productSize">
           <ion-option selected disabled>Please select</ion-option>
           <ion-option *ngFor="let dt of product.ProductDts" [value]="dt.ProductSize">{{dt.ProductSize}}</ion-option>
         </ion-select>
@@ -63,7 +63,7 @@
     padding: 0px 0px 0px 0px !important;
     margin-top: -5px !important;
     margin-left: -11px;" col-8>
-        <ion-select [(ngModel)]="transactionDt.AddDiscountType" name="discountType">
+        <ion-select style="max-width: 100%;" [(ngModel)]="transactionDt.AddDiscountType" name="discountType">
           <ion-option selected [value]="'P'">%</ion-option>
           <ion-option [value]="'N'">Rp.</ion-option>
         </ion-select>
