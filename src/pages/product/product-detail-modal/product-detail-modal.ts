@@ -83,17 +83,23 @@ export class ProductDetailModalPage {
     alert.present();
   }
 
-  validateDiscount() {
-    let discountValue = this.transactionDt.AddDiscountValue;
-    switch (this.transactionDt.AddDiscountType) {
-      case 'P':
-        if (!isNaN(discountValue) && !(discountValue < 0 && discountValue > 100))
-          this.totalDiscount = this.transactionDt.Qty ? (discountValue / 100) * this.itemPrice : 0;
-        break;
-      case 'N':
-        if (isNaN(this.transactionDt.Qty) || this.transactionDt.Qty < 0)
+  validateDiscount(e) {
+    let discountValue = parseInt(e);
+    if (isNaN(discountValue)) {
+      return false;
+    } else {
+      switch (this.transactionDt.AddDiscountType) {
+        case 'P':
+          if (discountValue < 0 || discountValue > 100)
+            return false;
+          this.totalDiscount = (discountValue / 100) * this.itemPrice;
+          break;
+        case 'N':
+          if (discountValue < 0)
+            return false;
           this.totalDiscount = discountValue;
-        break;
+          break;
+      }
     }
   }
 

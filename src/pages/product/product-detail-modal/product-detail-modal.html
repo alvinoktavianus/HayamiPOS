@@ -63,7 +63,7 @@
         </ion-select>
         <ion-input
           [ngModel]="transactionDt.AddDiscountValue"
-          (ngModelChange)="validateDiscount()"
+          (ngModelChange)="validateDiscount($event)"
           placeholder="Input discount value here"></ion-input>
       </ion-col>
       <ion-col col-4></ion-col>
