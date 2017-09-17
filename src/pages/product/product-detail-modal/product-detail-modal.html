@@ -35,45 +35,51 @@
     </ion-row>
     <ion-row>
       <ion-col col-4>Size</ion-col>
-      <ion-col col-8>
+      <ion-col style="height: 30px;
+    padding: 0px 0px 0px 0px !important;
+    margin-top: -5px !important;
+    margin-left: -11px;" col-8>
         <ion-select [(ngModel)]="transactionDt.ProductSize" name="productSize">
           <ion-option selected disabled>Please select</ion-option>
           <ion-option *ngFor="let dt of product.ProductDts" [value]="dt.ProductSize">{{dt.ProductSize}}</ion-option>
         </ion-select>
       </ion-col>
     </ion-row>
-    <ion-row>
+    <ion-row style="height: 81px;">
       <ion-col col-4>Quantity</ion-col>
-      <ion-col col-8>
+      <ion-col style="margin-top: -8px;" col-8>
         <ion-input [(ngModel)]="transactionDt.Qty" disabled></ion-input>
         <button ion-button (click)="addQty($event)" small>+</button>
         <button ion-button (click)="decreaseQty($event)" small>-</button>
       </ion-col>
       <ion-col col-4></ion-col>
-      <ion-col col-8>
+      <ion-col  col-8>
         <small *ngIf="transactionDt.ProductSize">Stock {{stock[transactionDt.ProductSize]}} pcs</small>
       </ion-col>
     </ion-row>
-    <ion-row>
-      <ion-col col-4>Ammount Discount</ion-col>
-      <ion-col col-8>
+    <ion-row style="height: 90px;">
+      <ion-col col-4>Amount Discount</ion-col>
+      <ion-col style="height: 80px;
+    padding: 0px 0px 0px 0px !important;
+    margin-top: -5px !important;
+    margin-left: -11px;" col-8>
         <ion-select [(ngModel)]="transactionDt.AddDiscountType" name="discountType">
           <ion-option selected [value]="'P'">%</ion-option>
           <ion-option [value]="'N'">Rp.</ion-option>
         </ion-select>
-        <ion-input
+        <ion-input style="margin-left:16px;margin-top: -8px;"
           [ngModel]="transactionDt.AddDiscountValue"
           (ngModelChange)="validateDiscount()"
           placeholder="Input discount value here"></ion-input>
       </ion-col>
       <ion-col col-4></ion-col>
-      <ion-col col-8>
+      <ion-col style="margin-top:-12px" col-8>
         <small>Amount discount: {{totalDiscount}}</small>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col col-4>Discount Description</ion-col>
-      <ion-col col-8>
+      <ion-col style="margin-top: -10px;" col-8>
         <ion-input
           [ngModel]="transactionDt.AddDiscountDesc"
           placeholder="Please input discount description"></ion-input>
