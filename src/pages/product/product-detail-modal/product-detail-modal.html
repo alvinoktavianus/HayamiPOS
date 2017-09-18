@@ -84,4 +84,76 @@
       <ion-col col-8>Rp. {{(transactionDt.Qty * itemPrice) - totalDiscount | number:0}}</ion-col>
     </ion-row>
   </ion-grid>
+
+  <h3>Shipping To</h3>
+  <hr/>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-4>Shipping To</ion-col>
+      <ion-col col-8>
+        <ion-select name="target" [(ngModel)]="transactionDt.target">
+          <ion-option [value]="customer">customer</ion-option>
+          <ion-option [value]="counter">counter</ion-option>
+        </ion-select>
+      </ion-col>
+    </ion-row>
+
+    <div *ngIf="transactionDt.target == 'customer'">
+      <ion-row>
+        <ion-col col-4>Customer's Name</ion-col>
+        <ion-col col-8>
+          <ion-select [(ngModel)]="transactionHd.CustomerID" name="customerid">
+            <ion-option selected disabled>Please select</ion-option>
+            <ion-option *ngFor="let customer of customers" [value]="customer.CustomerID">{{customer.CustName}}
+            </ion-option>
+          </ion-select>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-4>Address</ion-col>
+        <ion-col col-8 *ngIf="transactionHd.CustomerID">{{hashedCustomers[transactionHd.CustomerID].CustAddr}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-4>City</ion-col>
+        <ion-col col-8 *ngIf="transactionHd.CustomerID">{{hashedCustomers[transactionHd.CustomerID].CustCity}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-4>Contact No.</ion-col>
+        <ion-col col-8 *ngIf="transactionHd.CustomerID">{{hashedCustomers[transactionHd.CustomerID].CustPhone}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-4>Ekspedisi</ion-col>
+        <ion-col col-8>-</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-4>Keterangan</ion-col>
+        <ion-col col-8>-</ion-col>
+      </ion-row>
+    </div>
+
+    <div *ngIf="transactionDt.target == 'counter'">
+      <ion-row>
+        <ion-col col-4>Shop Name</ion-col>
+        <ion-col col-8>
+          <ion-select [(ngModel)]="transactionHd.CounterID" name="counterid">
+            <ion-option selected disabled>Please select</ion-option>
+            <ion-option *ngFor="let counter of counters" [value]="counter.CounterID">{{counter.CounterName}}</ion-option>
+          </ion-select>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-4>Address</ion-col>
+        <ion-col col-8 *ngIf="transactionHd.CounterID">{{hashedCounter[transactionHd.CounterID].CounterCity}}</ion-col>
+      </ion-row>
+    </div>
+
+    <br/>
+    <ion-row>
+      <ion-col col-10></ion-col>
+      <ion-col col-2>
+        <button ion-button (click)="addToCart()">Add to Cart</button>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
 </ion-content>

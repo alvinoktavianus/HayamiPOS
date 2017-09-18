@@ -24,10 +24,14 @@ export class ProductDetailModalPage {
     Qty: 0,
     AddDiscountValue: 0,
     AddDiscountType: 'P',
+    target: null,
   };
   stock: any = {};
   totalDiscount = 0;
   itemPrice;
+  hashedCustomers: any = {};
+  hashedCounter: any = {};
+  transactionHd: any = {};
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -45,6 +49,13 @@ export class ProductDetailModalPage {
 
     this.itemPrice = this.types[this.product['TypeID']].TypePrice;
 
+    this.customers.forEach(cust => {
+      this.hashedCustomers[cust.CustomerID] = cust;
+    });
+
+    this.counters.forEach(counter => {
+      this.hashedCounter[counter.CounterID] = counter;
+    });
   }
 
   onClickAddToCard() {
@@ -101,6 +112,13 @@ export class ProductDetailModalPage {
           break;
       }
     }
+  }
+
+  addToCart() {
+    let trHD = localStorage.getItem('trHdTemp');
+    let trDT = localStorage.getItem('trDtTemp');
+    console.log(trHD);
+    console.log(trDT);
   }
 
 }
