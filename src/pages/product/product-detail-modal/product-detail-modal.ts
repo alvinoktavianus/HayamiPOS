@@ -117,8 +117,17 @@ export class ProductDetailModalPage {
   addToCart() {
     let trHD = localStorage.getItem('trHdTemp');
     let trDT = localStorage.getItem('trDtTemp');
-    console.log(trHD);
-    console.log(trDT);
+    if (!trHD) {
+      // localStorage.setItem('trHdTemp', this.transactionHd);
+    }
+    if (!trDT) {
+      let dtl = [];
+      dtl.push(this.transactionDt);
+      JSON.stringify(dtl);
+      // localStorage.setItem('trDtTemp', dtl);
+    }
+    // console.log(trHD);
+    // console.log(trDT);
   }
 
 }
