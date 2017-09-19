@@ -118,16 +118,26 @@ export class ProductDetailModalPage {
     let trHD = localStorage.getItem('trHdTemp');
     let trDT = localStorage.getItem('trDtTemp');
     if (!trHD) {
-      // localStorage.setItem('trHdTemp', this.transactionHd);
+      localStorage.setItem('trHdTemp', this.transactionHd);
     }
     if (!trDT) {
       let dtl = [];
       dtl.push(this.transactionDt);
-      JSON.stringify(dtl);
-      // localStorage.setItem('trDtTemp', dtl);
+      localStorage.setItem('trDtTemp', JSON.stringify(dtl));
+    } else {
+      let dtl = JSON.parse(trDT);
+      dtl.push(this.transactionHd);
+      localStorage.setItem('trDtTemp', JSON.stringify(dtl));
     }
-    // console.log(trHD);
-    // console.log(trDT);
+    this.showSuccessAlert();
+  }
+
+  showSuccessAlert() {
+    let alert = this.alertCtrl.create({
+      message: 'Successfully add to cart',
+      buttons: ['OK']
+    });
+    alert.present();
   }
 
 }
