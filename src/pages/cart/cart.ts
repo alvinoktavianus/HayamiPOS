@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {Http} from "@angular/http";
-import {COUNTERS, CUSTOMERS, MODELS, PRODUCTS, REQUEST_HEADERS, TYPES} from "../../constant/api";
+import {COUNTERS, CUSTOMERS, DISCOUNTS, MODELS, PRODUCTS, REQUEST_HEADERS, TYPES} from "../../constant/api";
 
 /**
  * Generated class for the CartPage page.
@@ -22,6 +22,7 @@ export class CartPage {
   products: any = [];
   types: any = [];
   models: any = [];
+  discounts: any = {};
 
   transactionData: object = {
     target: null,
@@ -43,14 +44,22 @@ export class CartPage {
   fetchLocalStorageData() {
     let tempTransHd = JSON.parse(localStorage.getItem('trHdTemp'));
     let tempTransDt = JSON.parse(localStorage.getItem('trDtTemp'));
-  }
-
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CartPage');
+    this.transHd = tempTransHd;
+    this.transDt = tempTransDt;
   }
 
   fetchData() {
+    this.http
+      .get(DISCOUNTS, {headers: REQUEST_HEADERS()})
+      .map(res => res.json())
+      .subscribe(
+        data => {
+          data.forEach(discount => {
+            this.discounts[discount.DiscountID] = discount;
+          });
+        }
+      );
+
     this.http
       .get(CUSTOMERS, {headers: REQUEST_HEADERS()})
       .map(res => res.json())
@@ -103,6 +112,11 @@ export class CartPage {
 
   addRow() {
     this.transactionData['TransactionDt'].push({})
+  }
+
+  doRefresh(refresher) {
+    this.fetchLocalStorageData();
+    refresher.complete();
   }
 
 }
