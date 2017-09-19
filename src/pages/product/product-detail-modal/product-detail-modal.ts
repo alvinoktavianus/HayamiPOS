@@ -58,10 +58,6 @@ export class ProductDetailModalPage {
     });
   }
 
-  onClickAddToCard() {
-    return;
-  }
-
   addQty(event) {
     if (this.transactionDt.ProductSize) {
       if (this.transactionDt.Qty <= this.stock[this.transactionDt.ProductSize]) {
@@ -118,8 +114,10 @@ export class ProductDetailModalPage {
     let trHD = localStorage.getItem('trHdTemp');
     let trDT = localStorage.getItem('trDtTemp');
     if (!trHD) {
-      localStorage.setItem('trHdTemp', this.transactionHd);
+      localStorage.setItem('trHdTemp', JSON.stringify(this.transactionHd));
     }
+    this.transactionDt['TotalPrice'] = (this.transactionDt.Qty * this.itemPrice) - this.totalDiscount;
+    this.transactionDt['AddDiscountValue'] = parseInt(this.transactionDt['AddDiscountValue']);
     if (!trDT) {
       let dtl = [];
       dtl.push(this.transactionDt);
@@ -138,6 +136,10 @@ export class ProductDetailModalPage {
       buttons: ['OK']
     });
     alert.present();
+  }
+
+  onChangeDiscDesc(e) {
+    this.transactionDt['AddDiscountDesc'] = e;
   }
 
 }

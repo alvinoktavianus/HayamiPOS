@@ -29,11 +29,22 @@ export class CartPage {
     TransactionDt: [{}]
   };
 
+  transHd = {};
+  transDt = [];
+
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public http: Http) {
+    this.fetchLocalStorageData();
+
     this.fetchData();
   }
+
+  fetchLocalStorageData() {
+    let tempTransHd = JSON.parse(localStorage.getItem('trHdTemp'));
+    let tempTransDt = JSON.parse(localStorage.getItem('trDtTemp'));
+  }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CartPage');

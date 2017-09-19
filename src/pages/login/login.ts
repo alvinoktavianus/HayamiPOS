@@ -27,6 +27,7 @@ export class LoginPage {
               public loadingCtrl: LoadingController,
               public http: Http,
               public alertCtrl: AlertController) {
+    localStorage.clear();
   }
 
   ionViewDidLoad() {
@@ -71,24 +72,6 @@ export class LoginPage {
       buttons: ['OK']
     });
     alert.present();
-  }
-
-  showSuccess() {
-    let alert = this.alertCtrl.create({
-      title: 'Saved',
-      subTitle: 'Successfully saved configuration!',
-      buttons: ['OK']
-    });
-    alert.present();
-  }
-
-  presentNotConfigured() {
-    let notConfigured = this.alertCtrl.create({
-      title: 'Error',
-      subTitle: 'Please configure backend first!',
-      buttons: ['OK']
-    });
-    notConfigured.present();
   }
 
 }
