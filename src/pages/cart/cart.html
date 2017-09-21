@@ -26,9 +26,12 @@
   <div *ngIf="transHd && transDt">
     <ion-grid>
       <ion-row>
-        <!--<ion-col col-8 *ngIf="transHd.CustomerID">{{customers[transHd.CustomerID].CustName}}</ion-col>-->
         <ion-col col-8><h3>{{headers}}</h3></ion-col>
-        <ion-col col-4></ion-col>
+        <ion-col col-4><h3>Rp. {{totalPriceWithDiscount | number:0}}</h3></ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-8></ion-col>
+        <ion-col col-4><h5>(Rp. {{discountCustomer | number:0}})</h5></ion-col>
       </ion-row>
     </ion-grid>
   </div>

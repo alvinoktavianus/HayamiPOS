@@ -22,7 +22,7 @@ export class CartPage {
   products: any = [];
   types: any = [];
   models: any = [];
-  discounts: any = {};
+  discounts: any = [];
 
   transactionData: object = {
     target: null,
@@ -34,7 +34,8 @@ export class CartPage {
   transDt = [];
 
   headers;
-  totalPriceWithDiscount;
+  totalPriceWithDiscount = 0;
+  discountCustomer = 0;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -48,16 +49,8 @@ export class CartPage {
     this.transHd = tempTransHd;
     this.transDt = tempTransDt;
 
-    this.http
-      .get(DISCOUNTS, {headers: REQUEST_HEADERS()})
-      .map(res => res.json())
-      .subscribe(
-        data => {
-          data.forEach(discount => {
-            this.discounts[discount.DiscountID] = discount;
-          });
-        }
-      );
+    console.log(this.transHd);
+    console.log(this.transDt);
 
     if (this.transHd && this.transHd['CustomerID']) {
       this.http
@@ -73,6 +66,21 @@ export class CartPage {
             this.customers = data;
           }
         );
+
+      this.http
+        .get(DISCOUNTS, {headers: REQUEST_HEADERS()})
+        .map(res => res.json())
+        .subscribe(
+          data => {
+            this.discounts = data;
+            data.forEach(discount => {
+              if (discount.CustomerID === this.transHd['CustomerID']) {
+                this.discountCustomer = discount.DiscDivide;
+              }
+            })
+          }
+        );
+
     }
 
     if (this.transHd && this.transHd['CounterID']) {
@@ -119,6 +127,13 @@ export class CartPage {
         }
       );
 
+    this.transDt.forEach(dt => {
+      this.totalPriceWithDiscount += parseInt(dt.TotalPrice);
+    });
+
+    if (!this.discountCustomer) {
+      this.totalPriceWithDiscount -= this.discountCustomer;
+    }
 
   }
 
