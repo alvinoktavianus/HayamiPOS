@@ -39,9 +39,6 @@ export class CartPage {
     this.transHd = tempTransHd;
     this.transDt = tempTransDt;
 
-    // console.log(this.transHd);
-    // console.log(this.transDt);
-
     if (this.transHd && this.transHd['CustomerID']) {
       this.http
         .get(CUSTOMERS, {headers: REQUEST_HEADERS()})
@@ -87,6 +84,9 @@ export class CartPage {
     }
 
     if (this.transDt) {
+      // Reset the total price first to zero, then calculate new price
+      this.totalPriceWithDiscount = 0;
+
       this.transDt.forEach(dt => {
         this.totalPriceWithDiscount += dt.TotalPrice ? parseInt(dt.TotalPrice) : 0;
       });
@@ -96,13 +96,22 @@ export class CartPage {
       this.totalPriceWithDiscount -= this.discountCustomer;
     }
 
-    console.log(tempTransDt);
-
   }
 
   doRefresh(refresher) {
     this.fetchData();
     refresher.complete();
+  }
+
+  removeProduct(data) {
+    let index = this.transDt.indexOf(data);
+    this.transDt.splice(index, 1);
+
+    // After removing the data, set the data back to the local storage for the further request
+    localStorage.setItem('trDtTemp', JSON.stringify(this.transDt));
+
+    // Refresh the data
+    this.fetchData();
   }
 
 }

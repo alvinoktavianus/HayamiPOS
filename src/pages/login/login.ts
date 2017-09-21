@@ -27,11 +27,7 @@ export class LoginPage {
               public loadingCtrl: LoadingController,
               public http: Http,
               public alertCtrl: AlertController) {
-    localStorage.clear();
-  }
-
-  ionViewDidLoad() {
-    // console.log('ionViewDidLoad LoginPage');
+    // localStorage.clear();
   }
 
   doLogin() {
@@ -46,8 +42,6 @@ export class LoginPage {
         UserEmail: this.email,
         UserPassword: this.password
       };
-
-      console.log(LOGIN);
 
       loading.present();
       this.http
