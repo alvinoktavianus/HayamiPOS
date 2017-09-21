@@ -27,7 +27,7 @@ export class LoginPage {
               public loadingCtrl: LoadingController,
               public http: Http,
               public alertCtrl: AlertController) {
-    // localStorage.clear();
+    localStorage.clear();
   }
 
   ionViewDidLoad() {

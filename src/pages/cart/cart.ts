@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {Http} from "@angular/http";
-import {COUNTERS, CUSTOMERS, DISCOUNTS, MODELS, PRODUCTS, REQUEST_HEADERS, TYPES} from "../../constant/api";
+import {COUNTERS, CUSTOMERS, DISCOUNTS, REQUEST_HEADERS} from "../../constant/api";
 
 /**
  * Generated class for the CartPage page.
@@ -19,16 +19,6 @@ export class CartPage {
 
   customers: any = [];
   counters: any = [];
-  products: any = {};
-  types: any = [];
-  models: any = [];
-  discounts: any = [];
-
-  transactionData: object = {
-    target: null,
-    TotalDiscount: 0,
-    TransactionDt: [{}]
-  };
 
   transHd = {};
   transDt = [];
@@ -36,8 +26,6 @@ export class CartPage {
   headers;
   totalPriceWithDiscount = 0;
   discountCustomer = 0;
-
-  detailTransaction: any = [];
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -65,7 +53,6 @@ export class CartPage {
                 this.headers = customer.CustName;
               }
             });
-            this.customers = data;
           }
         );
 
@@ -74,7 +61,6 @@ export class CartPage {
         .map(res => res.json())
         .subscribe(
           data => {
-            this.discounts = data;
             data.forEach(discount => {
               if (discount.CustomerID === this.transHd['CustomerID']) {
                 this.discountCustomer = discount.DiscDivide;
@@ -96,68 +82,22 @@ export class CartPage {
                 this.headers = counter.CounterName;
               }
             });
-            this.counters = data;
           }
         );
     }
 
-    this.http
-      .get(PRODUCTS, {headers: REQUEST_HEADERS()})
-      .map(res => res.json())
-      .subscribe(
-        data => {
-          data.forEach(product => {
-            this.products[product.ProductHdID] = product;
-          });
-          console.log(this.products);
-        }
-      );
-
-    this.http
-      .get(TYPES, {headers: REQUEST_HEADERS()})
-      .map(res => res.json())
-      .subscribe(
-        data => {
-          this.types = data;
-        }
-      );
-
-    this.http
-      .get(MODELS, {headers: REQUEST_HEADERS()})
-      .map(res => res.json())
-      .subscribe(
-        data => {
-          this.models = data;
-        }
-      );
-
-    this.transDt.forEach(dt => {
-      this.totalPriceWithDiscount += parseInt(dt.TotalPrice);
-    });
+    if (this.transDt) {
+      this.transDt.forEach(dt => {
+        this.totalPriceWithDiscount += dt.TotalPrice ? parseInt(dt.TotalPrice) : 0;
+      });
+    }
 
     if (!this.discountCustomer) {
       this.totalPriceWithDiscount -= this.discountCustomer;
     }
 
-    if (tempTransDt) {
-      tempTransDt.forEach(data => {
-        console.log(this.products);
-        let temp = {
-          ProductCode: this.products[data.ProductHdID].ProductCode,
-          ProductDesc: this.products[data.ProductHdID].ProductDesc,
-          // Price: this.types
-        };
-      });
-    }
+    console.log(tempTransDt);
 
-  }
-
-  createTransaction() {
-    console.log("Created");
-  }
-
-  addRow() {
-    this.transactionData['TransactionDt'].push({})
   }
 
   doRefresh(refresher) {

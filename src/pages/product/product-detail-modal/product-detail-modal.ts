@@ -121,13 +121,18 @@ export class ProductDetailModalPage {
     }
     this.transactionDt['TotalPrice'] = (this.transactionDt.Qty * this.itemPrice) - this.totalDiscount;
     this.transactionDt['AddDiscountValue'] = parseInt(this.transactionDt['AddDiscountValue']);
+    this.transactionDt['ProductCode'] = this.product['ProductCode'];
+    this.transactionDt['ProductDesc'] = this.product['ProductDesc'];
+    this.transactionDt['AmmountDisc'] = this.totalDiscount;
+    this.transactionDt['ItemPrice'] = this.itemPrice = this.types[this.product['TypeID']].TypePrice;
+
     if (!trDT) {
       let dtl = [];
       dtl.push(this.transactionDt);
       localStorage.setItem('trDtTemp', JSON.stringify(dtl));
     } else {
       let dtl = JSON.parse(trDT);
-      dtl.push(this.transactionHd);
+      dtl.push(this.transactionDt);
       localStorage.setItem('trDtTemp', JSON.stringify(dtl));
     }
     this.showSuccessAlert();
