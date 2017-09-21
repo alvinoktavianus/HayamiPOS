@@ -113,6 +113,9 @@ export class ProductDetailModalPage {
   addToCart() {
     let trHD = localStorage.getItem('trHdTemp');
     let trDT = localStorage.getItem('trDtTemp');
+
+    this.transactionDt['ProductHdID'] = this.product['ProductHdID'];
+
     if (!trHD) {
       localStorage.setItem('trHdTemp', JSON.stringify(this.transactionHd));
     }
