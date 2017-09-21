@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {Http} from "@angular/http";
-import {COUNTERS, CUSTOMERS, DISCOUNTS, REQUEST_HEADERS} from "../../constant/api";
+import {COUNTERS, CUSTOMERS, DISCOUNTS, NEW_TRANSACTIONS, REQUEST_HEADERS} from "../../constant/api";
 
 /**
  * Generated class for the CartPage page.
@@ -27,9 +27,13 @@ export class CartPage {
   totalPriceWithDiscount = 0;
   discountCustomer = 0;
 
+  loadingPopup;
+  successMessage;
+
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public http: Http) {
+              public http: Http,
+              public alertCtrl: AlertController) {
     this.fetchData();
   }
 
@@ -112,6 +116,54 @@ export class CartPage {
 
     // Refresh the data
     this.fetchData();
+  }
+
+  doCreateNewTransaction() {
+    this.loadingAlert();
+
+    const newTransaction = this.transHd;
+    newTransaction['TotalPrice'] = this.totalPriceWithDiscount + this.discountCustomer;
+    newTransaction['TotalDiscount'] = this.discountCustomer;
+    newTransaction['TransactionDts'] = this.transDt;
+
+    this.http
+      .post(NEW_TRANSACTIONS, newTransaction, {headers: REQUEST_HEADERS()})
+      .subscribe(
+        data => {
+          console.log(data);
+          this.loadingPopup.dismiss();
+          this.successAlert();
+        }
+      );
+  }
+
+  loadingAlert() {
+    this.loadingPopup = this.alertCtrl.create({
+      message: 'Loading...',
+    });
+    this.loadingPopup.present();
+  }
+
+  successAlert() {
+    this.successMessage = this.alertCtrl.create({
+      message: 'Successfully create a new transaction',
+      buttons: [
+        {
+          text: 'OK',
+          handler: () => {
+            let tokenTemp = localStorage.getItem('TOKEN');
+            // We need to clear localStorage for further request
+            localStorage.clear();
+            // But we also not to clear TOKEN
+            localStorage.setItem('TOKEN', tokenTemp);
+            // After clearing the localStorage, don't forget to fetch the data back,
+            // so that it will make the cart empty;
+            this.fetchData();
+          }
+        }
+      ]
+    });
+    this.successMessage.present();
   }
 
 }
