@@ -34,6 +34,53 @@
         <ion-col col-4><h5>(Rp. {{discountCustomer | number:0}})</h5></ion-col>
       </ion-row>
     </ion-grid>
+    <hr/>
+    <ion-card *ngFor="let dt of transDt">
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col col-6>
+              <ion-row>
+                <ion-col col-4>Product Code</ion-col>
+                <!--<ion-col col-8>{{}}</ion-col>-->
+              </ion-row>
+              <ion-row>
+                <ion-col col-4>Product Description</ion-col>
+                <!--<ion-col col-8>{{}}</ion-col>-->
+              </ion-row>
+              <ion-row>
+                <ion-col col-4>Price</ion-col>
+                <!--<ion-col col-8>{{}}</ion-col>-->
+              </ion-row>
+              <ion-row>
+                <ion-col col-4>Size</ion-col>
+                <!--<ion-col col-8>{{}}</ion-col>-->
+              </ion-row>
+              <ion-row>
+                <ion-col col-4>Quantity</ion-col>
+                <!--<ion-col col-8>{{}}</ion-col>-->
+              </ion-row>
+              <ion-row>
+                <ion-col col-4>Aditional Discount</ion-col>
+                <!--<ion-col col-8>{{}}</ion-col>-->
+                <ion-col col-4></ion-col>
+                <!--<ion-col col-8>Ammount discount: {{}}</ion-col>-->
+              </ion-row>
+              <ion-row>
+                <ion-col col-4>Discount Description</ion-col>
+                <!--<ion-col col-8>{{}}</ion-col>-->
+              </ion-row>
+              <ion-row>
+                <ion-col col-4>Total Price</ion-col>
+                <!--<ion-col col-8>{{}}</ion-col>-->
+              </ion-row>
+            </ion-col>
+            <ion-col col-6>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
   </div>
 
 </ion-content>
