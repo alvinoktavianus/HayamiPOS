@@ -33,22 +33,21 @@ export class CartPage {
   transHd = {};
   transDt = [];
 
+  headers;
+  totalPriceWithDiscount;
+
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public http: Http) {
-    this.fetchLocalStorageData();
-
     this.fetchData();
   }
 
-  fetchLocalStorageData() {
+  fetchData() {
     let tempTransHd = JSON.parse(localStorage.getItem('trHdTemp'));
     let tempTransDt = JSON.parse(localStorage.getItem('trDtTemp'));
     this.transHd = tempTransHd;
     this.transDt = tempTransDt;
-  }
 
-  fetchData() {
     this.http
       .get(DISCOUNTS, {headers: REQUEST_HEADERS()})
       .map(res => res.json())
@@ -60,23 +59,38 @@ export class CartPage {
         }
       );
 
-    this.http
-      .get(CUSTOMERS, {headers: REQUEST_HEADERS()})
-      .map(res => res.json())
-      .subscribe(
-        data => {
-          this.customers = data;
-        }
-      );
+    if (this.transHd && this.transHd['CustomerID']) {
+      this.http
+        .get(CUSTOMERS, {headers: REQUEST_HEADERS()})
+        .map(res => res.json())
+        .subscribe(
+          data => {
+            data.forEach(customer => {
+              if (customer.CustomerID === this.transHd['CustomerID']) {
+                this.headers = customer.CustName;
+              }
+            });
+            this.customers = data;
+          }
+        );
+    }
 
-    this.http
-      .get(COUNTERS, {headers: REQUEST_HEADERS()})
-      .map(res => res.json())
-      .subscribe(
-        data => {
-          this.counters = data;
-        }
-      );
+    if (this.transHd && this.transHd['CounterID']) {
+      this.http
+        .get(COUNTERS, {headers: REQUEST_HEADERS()})
+        .map(res => res.json())
+        .subscribe(
+          data => {
+            data.forEach(counter => {
+              if (counter.CounterID === this.transHd['CounterID']) {
+                this.headers = counter.CounterName;
+              }
+            });
+            this.counters = data;
+          }
+        );
+    }
+
 
     this.http
       .get(PRODUCTS, {headers: REQUEST_HEADERS()})
@@ -104,6 +118,8 @@ export class CartPage {
           this.models = data;
         }
       );
+
+
   }
 
   createTransaction() {
@@ -115,7 +131,7 @@ export class CartPage {
   }
 
   doRefresh(refresher) {
-    this.fetchLocalStorageData();
+    this.fetchData();
     refresher.complete();
   }
 
