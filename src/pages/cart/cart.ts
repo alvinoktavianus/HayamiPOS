@@ -19,7 +19,7 @@ export class CartPage {
 
   customers: any = [];
   counters: any = [];
-  products: any = [];
+  products: any = {};
   types: any = [];
   models: any = [];
   discounts: any = [];
@@ -37,6 +37,8 @@ export class CartPage {
   totalPriceWithDiscount = 0;
   discountCustomer = 0;
 
+  detailTransaction: any = [];
+
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public http: Http) {
@@ -49,8 +51,8 @@ export class CartPage {
     this.transHd = tempTransHd;
     this.transDt = tempTransDt;
 
-    console.log(this.transHd);
-    console.log(this.transDt);
+    // console.log(this.transHd);
+    // console.log(this.transDt);
 
     if (this.transHd && this.transHd['CustomerID']) {
       this.http
@@ -99,13 +101,15 @@ export class CartPage {
         );
     }
 
-
     this.http
       .get(PRODUCTS, {headers: REQUEST_HEADERS()})
       .map(res => res.json())
       .subscribe(
         data => {
-          this.products = data;
+          data.forEach(product => {
+            this.products[product.ProductHdID] = product;
+          });
+          console.log(this.products);
         }
       );
 
@@ -133,6 +137,17 @@ export class CartPage {
 
     if (!this.discountCustomer) {
       this.totalPriceWithDiscount -= this.discountCustomer;
+    }
+
+    if (tempTransDt) {
+      tempTransDt.forEach(data => {
+        console.log(this.products);
+        let temp = {
+          ProductCode: this.products[data.ProductHdID].ProductCode,
+          ProductDesc: this.products[data.ProductHdID].ProductDesc,
+          // Price: this.types
+        };
+      });
     }
 
   }
