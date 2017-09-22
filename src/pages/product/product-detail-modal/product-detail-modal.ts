@@ -97,9 +97,9 @@ export class ProductDetailModalPage {
     } else {
       switch (this.transactionDt.AddDiscountType) {
         case 'P':
-          if (discountValue < 0 || discountValue > 100)
-            return false;
-          this.totalDiscount = (discountValue / 100) * this.itemPrice;
+          let disc = discountValue < 0 || discountValue > 100 ? 0 : discountValue;
+          this.transactionDt.AddDiscountValue = disc;
+          this.totalDiscount = (disc / 100) * this.itemPrice * this.transactionDt.Qty;
           break;
         case 'N':
           if (discountValue < 0)
