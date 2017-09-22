@@ -19,9 +19,9 @@ import {TransactionOustandingModalPage} from "./transaction-oustanding-modal/tra
 export class TransactionOutstandingPage {
 
   transactions: any = [];
-  customers: object = {};
-  types: object = {};
-  products: object = {};
+  customers: object;
+  types: object;
+  products: object;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -47,6 +47,7 @@ export class TransactionOutstandingPage {
       .map(res => res.json())
       .subscribe(
         data => {
+          this.customers = {};
           data.forEach(customer => {
             this.customers[customer.CustomerID] = customer;
           })
@@ -58,6 +59,7 @@ export class TransactionOutstandingPage {
       .map(res => res.json())
       .subscribe(
         data => {
+          this.products = {};
           data.forEach(product => {
             this.products[product.ProductHdID] = product;
           })
@@ -69,6 +71,7 @@ export class TransactionOutstandingPage {
       .map(res => res.json())
       .subscribe(
         data => {
+          this.types = {};
           data.forEach(type => {
             this.types[type.TypeID] = type;
           });

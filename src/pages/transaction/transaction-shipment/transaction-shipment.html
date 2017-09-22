@@ -14,16 +14,16 @@
 
 
 <ion-content padding>
-  <div *ngIf="transactions.length == 0">
+  <div *ngIf="transactions && transactions.length == 0">
     <h3>No data found on our system</h3>
   </div>
 
-  <div *ngIf="transactions.length > 0 && customers">
+  <div *ngIf="transactions && transactions.length > 0 && customers">
     <ion-card *ngFor="let transaction of transactions">
       <ion-card-content>
         <ion-grid>
           <ion-row>
-            <ion-col col-4>
+            <ion-col col-5>
               <ion-row>
                 <ion-col col-6>Transaction No.</ion-col>
                 <ion-col col-6>{{transaction.TransNo}}</ion-col>
@@ -38,14 +38,14 @@
               </ion-row>
               <ion-row>
                 <ion-col col-6>Discount Customer</ion-col>
-                <ion-col col-6>{{transaction.TotalDiscount}}</ion-col>
+                <ion-col col-6>Rp. {{transaction.TotalDiscount | number:0}}</ion-col>
               </ion-row>
               <ion-row>
                 <ion-col col-6>Total</ion-col>
-                <ion-col col-6>{{transaction.TotalPrice}}</ion-col>
+                <ion-col col-6>Rp. {{transaction.TotalPrice | number:0}}</ion-col>
               </ion-row>
             </ion-col>
-            <ion-col col-4>
+            <ion-col col-5>
               <ion-row>
                 <ion-col col-6>Shipping No.</ion-col>
                 <ion-col col-6></ion-col>
@@ -63,10 +63,11 @@
                 <ion-col col-6>Shipping</ion-col>
               </ion-row>
             </ion-col>
-            <ion-col col-4>
+            <ion-col col-2>
               <ion-row>
                 <ion-col col-12>
-                  <button ion-button (click)="onClickReceived()">Received</button>
+                  <button ion-button (click)="openDetailModal(transaction)" small>Detail</button>
+                  <button ion-button (click)="onClickReceived()" small>Received</button>
                 </ion-col>
               </ion-row>
             </ion-col>
