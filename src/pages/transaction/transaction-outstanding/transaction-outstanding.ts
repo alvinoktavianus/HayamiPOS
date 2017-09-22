@@ -18,7 +18,7 @@ import {TransactionOustandingModalPage} from "./transaction-oustanding-modal/tra
 })
 export class TransactionOutstandingPage {
 
-  transactions: any = [];
+  transactions: any;
   customers: object;
   types: object;
   products: object;
@@ -36,6 +36,7 @@ export class TransactionOutstandingPage {
       .map(res => res.json())
       .subscribe(
         data => {
+          this.transactions = [];
           data.forEach(tr => {
             if (tr.FgStatus == 'O') this.transactions.push(tr);
           });
