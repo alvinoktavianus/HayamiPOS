@@ -14,5 +14,19 @@
 
 
 <ion-content padding>
-
+  <ion-row *ngFor="let dtl of dtlReceivedData">
+    <ion-col col-3>{{dtl.ProductSize}}</ion-col>
+    <ion-col col-6>
+      <ion-input
+        [(ngModel)]="dtl.ReceivedQty"
+        (ngModelChange)="validateQty($event, dtl)"
+        placeholder="Input received value"></ion-input>
+    </ion-col>
+    <ion-col col-3>Max quantity are {{dtl.Qty}}</ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col col-12>
+      <button ion-button small (click)="confirm()">Confirm</button>
+    </ion-col>
+  </ion-row>
 </ion-content>

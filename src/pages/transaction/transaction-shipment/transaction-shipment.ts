@@ -89,7 +89,7 @@ export class TransactionShipmentPage {
     let idx = this.transactions.indexOf(transaction);
     const singleTr = this.transactions[idx].TransactionDts;
 
-    const modal = this.modalCtrl.create(TransactionShipmentReceivedModalPage, singleTr);
+    const modal = this.modalCtrl.create(TransactionShipmentReceivedModalPage, {TrDts: singleTr});
     modal.present();
   }
 

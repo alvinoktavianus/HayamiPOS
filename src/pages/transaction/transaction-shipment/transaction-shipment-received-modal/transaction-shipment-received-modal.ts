@@ -15,13 +15,26 @@ import {IonicPage, NavController, NavParams} from 'ionic-angular';
 })
 export class TransactionShipmentReceivedModalPage {
 
+  dtlReceivedData: any = [];
+
   constructor(public navCtrl: NavController,
               public navParams: NavParams) {
-    console.log(this.navParams);
+    this.dtlReceivedData = [...navParams.data.TrDts];
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TransactionShipmentReceivedModalPage');
+  validateQty(e, dtl) {
+    let receivedQty = parseInt(e);
+    let idx = this.dtlReceivedData.indexOf(dtl);
+    let qty = this.dtlReceivedData[idx].Qty;
+    if (isNaN(receivedQty)) {
+      return false;
+    } else {
+      this.dtlReceivedData[idx].ReceivedQty = receivedQty < 0 || receivedQty > qty ? 0 : receivedQty;
+    }
+  }
+
+  confirm() {
+    console.log(this.dtlReceivedData);
   }
 
 }
