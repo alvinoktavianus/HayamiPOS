@@ -3,6 +3,7 @@ import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angula
 import {Http} from "@angular/http";
 import {CUSTOMERS, PRODUCTS, REQUEST_HEADERS, TRANSACTIONS, TYPES} from "../../../constant/api";
 import {TransactionShipmentModalPage} from "./transaction-shipment-modal/transaction-shipment-modal";
+import {TransactionShipmentReceivedModalPage} from "./transaction-shipment-received-modal/transaction-shipment-received-modal";
 
 /**
  * Generated class for the TransactionShipmentPage page.
@@ -84,8 +85,12 @@ export class TransactionShipmentPage {
       );
   }
 
-  onClickReceived() {
-    console.log("clicked");
+  onClickReceived(transaction) {
+    let idx = this.transactions.indexOf(transaction);
+    const singleTr = this.transactions[idx].TransactionDts;
+
+    const modal = this.modalCtrl.create(TransactionShipmentReceivedModalPage, singleTr);
+    modal.present();
   }
 
   openDetailModal(transaction) {
