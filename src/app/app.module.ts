@@ -35,6 +35,9 @@ import {TransactionOutstandingPage} from "../pages/transaction/transaction-outst
 import {TransactionShipmentPage} from "../pages/transaction/transaction-shipment/transaction-shipment";
 import {TransactionCompletedPage} from "../pages/transaction/transaction-completed/transaction-completed";
 import {ProductDetailModalPage} from "../pages/product/product-detail-modal/product-detail-modal";
+import {TransactionOustandingModalPage} from "../pages/transaction/transaction-outstanding/transaction-oustanding-modal/transaction-oustanding-modal";
+import {TransactionShipmentModalPage} from "../pages/transaction/transaction-shipment/transaction-shipment-modal/transaction-shipment-modal";
+import {TransactionShipmentReceivedModalPage} from "../pages/transaction/transaction-shipment/transaction-shipment-received-modal/transaction-shipment-received-modal";
 
 @NgModule({
   declarations: [
@@ -65,7 +68,10 @@ import {ProductDetailModalPage} from "../pages/product/product-detail-modal/prod
     TransactionOutstandingPage,
     TransactionShipmentPage,
     TransactionCompletedPage,
-    ProductDetailModalPage
+    ProductDetailModalPage,
+    TransactionOustandingModalPage,
+    TransactionShipmentModalPage,
+    TransactionShipmentReceivedModalPage,
   ],
   imports: [
     BrowserModule,
@@ -101,7 +107,10 @@ import {ProductDetailModalPage} from "../pages/product/product-detail-modal/prod
     TransactionOutstandingPage,
     TransactionShipmentPage,
     TransactionCompletedPage,
-    ProductDetailModalPage
+    ProductDetailModalPage,
+    TransactionOustandingModalPage,
+    TransactionShipmentModalPage,
+    TransactionShipmentReceivedModalPage,
   ],
   providers: [
     StatusBar,

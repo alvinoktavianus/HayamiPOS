@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 import {Http} from "@angular/http";
-import {CUSTOMERS, REQUEST_HEADERS, TRANSACTIONS} from "../../../constant/api";
+import {CUSTOMERS, PRODUCTS, REQUEST_HEADERS, TRANSACTIONS, TYPES} from "../../../constant/api";
+import {TransactionOustandingModalPage} from "./transaction-oustanding-modal/transaction-oustanding-modal";
 
 /**
  * Generated class for the TransactionOutstandingPage page.
@@ -17,17 +18,16 @@ import {CUSTOMERS, REQUEST_HEADERS, TRANSACTIONS} from "../../../constant/api";
 })
 export class TransactionOutstandingPage {
 
-  transactions: any = [];
-  customers: object = {};
+  transactions: any;
+  customers: object;
+  types: object;
+  products: object;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public http: Http) {
+              public http: Http,
+              public modalCtrl: ModalController) {
     this.fetchAllData();
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TransactionOutstandingPage');
   }
 
   fetchAllData() {
@@ -36,6 +36,7 @@ export class TransactionOutstandingPage {
       .map(res => res.json())
       .subscribe(
         data => {
+          this.transactions = [];
           data.forEach(tr => {
             if (tr.FgStatus == 'O') this.transactions.push(tr);
           });
@@ -47,11 +48,53 @@ export class TransactionOutstandingPage {
       .map(res => res.json())
       .subscribe(
         data => {
+          this.customers = {};
           data.forEach(customer => {
             this.customers[customer.CustomerID] = customer;
           })
         }
       );
+
+    this.http
+      .get(PRODUCTS, {headers: REQUEST_HEADERS()})
+      .map(res => res.json())
+      .subscribe(
+        data => {
+          this.products = {};
+          data.forEach(product => {
+            this.products[product.ProductHdID] = product;
+          })
+        }
+      );
+
+    this.http
+      .get(TYPES, {headers: REQUEST_HEADERS()})
+      .map(res => res.json())
+      .subscribe(
+        data => {
+          this.types = {};
+          data.forEach(type => {
+            this.types[type.TypeID] = type;
+          });
+        }
+      );
+  }
+
+  openDetailModal(transaction) {
+    let index = this.transactions.indexOf(transaction);
+    const singleTr = this.transactions[index].TransactionDts;
+    const status = this.transactions[index].FgStatus;
+
+    singleTr.forEach((tr, index) => {
+      singleTr[index]['ProductCode'] = this.products[tr.ProductHdID].ProductCode;
+      singleTr[index]['ProductDesc'] = this.products[tr.ProductHdID].ProductDesc;
+      singleTr[index]['Price'] = this.types[this.products[tr.ProductHdID].TypeID].TypePrice;
+      singleTr[index]['Status'] = status;
+    });
+
+    let modal = this.modalCtrl.create(TransactionOustandingModalPage, {TrDts: singleTr});
+    modal.present();
+
   }
 
 }

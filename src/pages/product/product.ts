@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 import {Http} from "@angular/http";
-import {PRODUCTS, REQUEST_HEADERS} from "../../constant/api";
+import {COUNTERS, CUSTOMERS, MODELS, PRODUCTS, REQUEST_HEADERS, TYPES} from "../../constant/api";
 import 'rxjs/add/operator/map';
 import {ProductDetailModalPage} from "./product-detail-modal/product-detail-modal";
 
@@ -20,6 +20,10 @@ import {ProductDetailModalPage} from "./product-detail-modal/product-detail-moda
 export class ProductPage {
 
   products: any;
+  types: any = {};
+  models: any = {};
+  customers: any;
+  counters: any;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -38,16 +42,59 @@ export class ProductPage {
         data => {
           this.products = data;
         }
-      )
-  }
+      );
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ProductPage');
+    this.http
+      .get(TYPES, {headers: REQUEST_HEADERS()})
+      .map(res => res.json())
+      .subscribe(
+        data => {
+          data.forEach(type => {
+            // console.log(type);
+            this.types[type.TypeID] = type;
+          });
+        }
+      );
+
+    this.http
+      .get(MODELS, {headers: REQUEST_HEADERS()})
+      .map(res => res.json())
+      .subscribe(
+        data => {
+          data.forEach(model => {
+            this.models[model.ModelID] = model;
+          });
+        }
+      );
+
+    this.http
+      .get(CUSTOMERS, {headers: REQUEST_HEADERS()})
+      .map(res => res.json())
+      .subscribe(
+        data => {
+          this.customers = data;
+        }
+      );
+
+    this.http
+      .get(COUNTERS, {headers: REQUEST_HEADERS()})
+      .map(res => res.json())
+      .subscribe(
+        data => {
+          this.counters = data;
+        }
+      );
   }
 
   openModal = (products) => {
-    const params = {...products};
-    let modal = this.modalCtrl.create(ProductDetailModalPage, params);
+    const fullParams = {
+      product: {...products},
+      model: this.models,
+      type: this.types,
+      customers: this.customers,
+      counters: this.counters,
+    };
+    let modal = this.modalCtrl.create(ProductDetailModalPage, fullParams);
     modal.present();
   }
 

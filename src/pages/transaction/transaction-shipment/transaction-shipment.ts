@@ -1,7 +1,9 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 import {Http} from "@angular/http";
-import {CUSTOMERS, REQUEST_HEADERS, TRANSACTIONS} from "../../../constant/api";
+import {CUSTOMERS, PRODUCTS, REQUEST_HEADERS, TRANSACTIONS, TYPES} from "../../../constant/api";
+import {TransactionShipmentModalPage} from "./transaction-shipment-modal/transaction-shipment-modal";
+import {TransactionShipmentReceivedModalPage} from "./transaction-shipment-received-modal/transaction-shipment-received-modal";
 
 /**
  * Generated class for the TransactionShipmentPage page.
@@ -17,17 +19,16 @@ import {CUSTOMERS, REQUEST_HEADERS, TRANSACTIONS} from "../../../constant/api";
 })
 export class TransactionShipmentPage {
 
-  transactions: any = [];
-  customers: object = {};
+  transactions: any;
+  customers: object;
+  types: object;
+  products: object;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public http: Http) {
+              public http: Http,
+              public modalCtrl: ModalController) {
     this.fetchData();
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TransactionShipmentPage');
   }
 
   fetchData() {
@@ -36,6 +37,7 @@ export class TransactionShipmentPage {
       .map(res => res.json())
       .subscribe(
         data => {
+          this.transactions = [];
           data.forEach(data => {
             if (data.FgStatus == 'S') this.transactions.push(data);
           });
@@ -47,15 +49,67 @@ export class TransactionShipmentPage {
       .map(res => res.json())
       .subscribe(
         data => {
+          this.customers = {};
           data.forEach(customer => {
             this.customers[customer.CustomerID] = customer;
           })
         }
       );
+
+    this.http
+      .get(PRODUCTS, {headers: REQUEST_HEADERS()})
+      .map(res => res.json())
+      .subscribe(
+        data => {
+          this.products = {};
+          data.forEach(product => {
+            this.products[product.ProductHdID] = product;
+          })
+        }
+      );
+
+    this.http
+      .get(TYPES, {headers: REQUEST_HEADERS()})
+      .map(res => res.json())
+      .subscribe(
+        data => {
+          this.types = {};
+          data.forEach(type => {
+            this.types[type.TypeID] = type;
+          });
+        }
+      );
   }
 
-  onClickReceived() {
-    console.log("clicked");
+  onClickReceived(transaction) {
+    let idx = this.transactions.indexOf(transaction);
+    const singleTr = this.transactions[idx].TransactionDts;
+
+    const modal = this.modalCtrl.create(TransactionShipmentReceivedModalPage, {
+      TrDts: singleTr,
+      TrHdID: this.transactions[idx].TransHdID,
+      Status: this.transactions[idx].FgStatus
+    });
+    modal.present();
+  }
+
+  openDetailModal(transaction) {
+    let idx = this.transactions.indexOf(transaction);
+    const singleTr = this.transactions[idx].TransactionDts;
+
+    singleTr.forEach((tr, index) => {
+      singleTr[index]['ProductCode'] = this.products[tr.ProductHdID].ProductCode;
+      singleTr[index]['ProductDesc'] = this.products[tr.ProductHdID].ProductDesc;
+      singleTr[index]['Price'] = this.types[this.products[tr.ProductHdID].TypeID].TypePrice;
+    });
+
+    const modal = this.modalCtrl.create(TransactionShipmentModalPage, {TrDts: singleTr});
+    modal.present();
+  }
+
+  doRefresh(refresher) {
+    this.fetchData();
+    refresher.complete();
   }
 
 }

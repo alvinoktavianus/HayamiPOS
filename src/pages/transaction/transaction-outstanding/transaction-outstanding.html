@@ -14,12 +14,12 @@
 
 
 <ion-content padding>
-  <div *ngIf="transactions.length == 0">
+  <div *ngIf="transactions && transactions.length == 0">
     <h3>No data found on our system</h3>
   </div>
 
-  <div *ngIf="transactions.length > 0 && customers">
-    <ion-card *ngFor="let transaction of transactions">
+  <div *ngIf="transactions && transactions.length > 0 && customers">
+    <ion-card *ngFor="let transaction of transactions" (click)="openDetailModal(transaction)">
       <ion-card-content>
         <ion-grid>
           <ion-row>
