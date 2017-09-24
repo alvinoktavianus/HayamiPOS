@@ -31,10 +31,6 @@ export class TransactionShipmentPage {
     this.fetchData();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TransactionShipmentPage');
-  }
-
   fetchData() {
     this.http
       .get(TRANSACTIONS, {headers: REQUEST_HEADERS()})
@@ -89,7 +85,11 @@ export class TransactionShipmentPage {
     let idx = this.transactions.indexOf(transaction);
     const singleTr = this.transactions[idx].TransactionDts;
 
-    const modal = this.modalCtrl.create(TransactionShipmentReceivedModalPage, {TrDts: singleTr, TrHdID: this.transactions[idx].TransHdID});
+    const modal = this.modalCtrl.create(TransactionShipmentReceivedModalPage, {
+      TrDts: singleTr,
+      TrHdID: this.transactions[idx].TransHdID,
+      Status: this.transactions[idx].FgStatus
+    });
     modal.present();
   }
 
@@ -105,6 +105,11 @@ export class TransactionShipmentPage {
 
     const modal = this.modalCtrl.create(TransactionShipmentModalPage, {TrDts: singleTr});
     modal.present();
+  }
+
+  doRefresh(refresher) {
+    this.fetchData();
+    refresher.complete();
   }
 
 }

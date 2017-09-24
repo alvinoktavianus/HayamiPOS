@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {AlertController, IonicPage, LoadingController, NavController, NavParams} from 'ionic-angular';
 import {Http} from "@angular/http";
-import {FINISHED_TRANSACTIONS, REQUEST_HEADERS} from "../../../../constant/api";
+import {REQUEST_HEADERS, TRANSACTIONS} from "../../../../constant/api";
 
 /**
  * Generated class for the TransactionShipmentReceivedModalPage page.
@@ -45,11 +45,11 @@ export class TransactionShipmentReceivedModalPage {
 
   confirm() {
     this.showLoadingAlert();
-    console.log(this.dtlReceivedData);
 
     let dtlTrans = [];
     this.dtlReceivedData.forEach(detail => {
       let tempDetail = {
+        TransDtID: detail.TransDtID,
         ReceiveQty: detail.ReceiveQty
       };
       dtlTrans.push(tempDetail);
@@ -58,17 +58,15 @@ export class TransactionShipmentReceivedModalPage {
     let finishedTrans = {
       TransHdID: this.trHdID,
       TransactionDts: dtlTrans,
+      FgStatus: this.navParams.data.Status,
     };
 
-    console.log(finishedTrans);
-    console.log(`${FINISHED_TRANSACTIONS}/${this.trHdID}`);
-    this.loadingAlert.dismiss();
-    this.showSuccessAlert();
-    // this.http
-    //   .put(FINISHED_TRANSACTIONS, finishedTrans, {headers: REQUEST_HEADERS()})
-    //   .subscribe(data => {
-    //
-    //   });
+    this.http
+      .put(`${TRANSACTIONS}/${this.trHdID}`, finishedTrans, {headers: REQUEST_HEADERS()})
+      .subscribe(() => {
+        this.loadingAlert.dismiss();
+        this.showSuccessAlert();
+      });
   }
 
   showLoadingAlert() {
@@ -81,7 +79,8 @@ export class TransactionShipmentReceivedModalPage {
   showSuccessAlert() {
     this.successAlert = this.alertCtrl.create({
       title: 'Success',
-      message: "Successfully update this transaction"
+      message: "Successfully update this transaction. Please pull to refresh.",
+      buttons: ['OK']
     });
     this.successAlert.present();
   }

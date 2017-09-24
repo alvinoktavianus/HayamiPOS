@@ -25,7 +25,6 @@ export const NEW_STORAGES = `${ENV.API_HOST}/api/storages/new`;
 
 export const TRANSACTIONS = `${ENV.API_HOST}/api/transactions`;
 export const NEW_TRANSACTIONS = `${ENV.API_HOST}/api/transactions/new`;
-export const FINISHED_TRANSACTIONS = `${ENV.API_HOST}/api/transactions/finished`;
 
 export function REQUEST_HEADERS() {
   let headers = new Headers();
