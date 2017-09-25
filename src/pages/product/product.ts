@@ -86,6 +86,11 @@ export class ProductPage {
       );
   }
 
+  doRefresh(refresher) {
+    this.fetchData();
+    refresher.complete();
+  }
+
   openModal = (products) => {
     const fullParams = {
       product: {...products},

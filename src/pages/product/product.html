@@ -15,6 +15,10 @@
 
 <ion-content padding>
 
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <ion-row>
     <ion-col col-md-3 *ngFor="let product of products">
       <ion-card (click)="openModal(product)">
