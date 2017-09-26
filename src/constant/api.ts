@@ -26,6 +26,9 @@ export const NEW_STORAGES = `${ENV.API_HOST}/api/storages/new`;
 export const TRANSACTIONS = `${ENV.API_HOST}/api/transactions`;
 export const NEW_TRANSACTIONS = `${ENV.API_HOST}/api/transactions/new`;
 
+export const RETURN = `${ENV.API_HOST}/api/returns`;
+export const NEW_RETURN = `${ENV.API_HOST}/api/returns/new`;
+
 export function REQUEST_HEADERS() {
   let headers = new Headers();
   headers.append('TOKEN', localStorage.getItem('TOKEN'));

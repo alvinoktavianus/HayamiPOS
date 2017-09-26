@@ -14,5 +14,85 @@
 
 
 <ion-content padding>
+  <h3>Detail Product</h3>
+  <hr>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-4>Product Code</ion-col>
+      <ion-col col-8>{{product.ProductCode}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4>Product Description</ion-col>
+      <ion-col col-8>{{product.ProductDesc}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4>Product Type</ion-col>
+      <ion-col col-8>{{types[product.TypeID].TypeName}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4>Model</ion-col>
+      <ion-col col-8>{{models[product.ModelID].ModelName}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4>Price</ion-col>
+      <ion-col col-8>Rp. {{types[product.TypeID].TypePrice | number:0}}</ion-col>
+    </ion-row>
+  </ion-grid>
+  <br>
+
+  <h3>Detail Return</h3>
+  <hr>
+  <ion-grid *ngFor="let tr of TransRetur; let i = index">
+    <ion-row>
+      <ion-col col-6>
+        <ion-row>
+          <ion-col col-4>Size</ion-col>
+          <ion-col col-8>
+            <ion-select [(ngModel)]="tr.ProductSize" name="productsize">
+              <ion-option selected disabled>Please select</ion-option>
+              <ion-option *ngFor="let dt of product.ProductDts" [value]="dt.ProductSize">{{dt.ProductSize}}</ion-option>
+            </ion-select>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-4>Qty</ion-col>
+          <ion-col col-8>
+            <ion-input [(ngModel)]="tr.ReturQty" name="returnqty" placeholder="Enter quantity"></ion-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-4>Return Type</ion-col>
+          <ion-col col-8>
+            <ion-select [(ngModel)]="tr.ReturType" name="returntype">
+              <ion-option selected disabled>Please select</ion-option>
+              <ion-option [value]="'R'">Broken</ion-option>
+              <ion-option [value]="'T'">Not sellable</ion-option>
+            </ion-select>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+      <ion-col col-6>
+        <ion-row>
+          <ion-col col-4>Return Remarks</ion-col>
+          <ion-col col-8>
+            <ion-textarea [(ngModel)]="tr.ReturRemarks" placeholder="Enter remarks here"></ion-textarea>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col col-12>
+            <button ion-button small (click)="addRow()">Add</button>
+            <button ion-button small *ngIf="i > 0" color="danger" (click)="removeRow(i)">Remove</button>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12>
+        <button ion-button small (click)="submitReturn()">Submit</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>
