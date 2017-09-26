@@ -14,5 +14,8 @@
 
 
 <ion-content padding>
-
+  <ion-tabs tabsPlacement="top">
+    <ion-tab [root]="tabsReturnOutstanding" tabTitle="Outstanding"></ion-tab>
+    <ion-tab [root]="tabsReturnCompleted" tabTitle="Completed"></ion-tab>
+  </ion-tabs>
 </ion-content>
