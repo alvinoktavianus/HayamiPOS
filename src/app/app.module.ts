@@ -3,7 +3,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {HttpModule} from '@angular/http';
 import {IonicApp, IonicModule, IonicErrorHandler} from 'ionic-angular';
 import {MyApp} from './app.component';
-
+import {Data} from '../providers/data/data';
 // Import all of the page here
 import {TabsPage} from '../pages/tabs/tabs';
 import {LoginPage} from '../pages/login/login';
@@ -77,7 +77,7 @@ import {ReturnCompletedPage} from "../pages/return/return-completed/return-compl
     TransactionShipmentReceivedModalPage,
     ProductReturnModalPage,
     ReturnOutstandingPage,
-    ReturnCompletedPage,
+    ReturnCompletedPage
   ],
   imports: [
     BrowserModule,
@@ -124,7 +124,9 @@ import {ReturnCompletedPage} from "../pages/return/return-completed/return-compl
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    Data,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    DataProvider
   ]
 })
 export class AppModule {

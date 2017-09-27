@@ -5,7 +5,7 @@ import {COUNTERS, CUSTOMERS, MODELS, PRODUCTS, REQUEST_HEADERS, TYPES} from "../
 import 'rxjs/add/operator/map';
 import {ProductDetailModalPage} from "./product-detail-modal/product-detail-modal";
 import {ProductReturnModalPage} from "./product-return-modal/product-return-modal";
-
+import { Data } from '../../../providers/data';
 /**
  * Generated class for the ProductPage page.
  *
@@ -25,11 +25,12 @@ export class ProductPage {
   models: any = {};
   customers: any;
   counters: any;
-
+  searchTerm: string;
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public http: Http,
-              public modalCtrl: ModalController) {
+              public modalCtrl: ModalController,
+              public dataService: Data) {
     this.fetchData();
   }
 
@@ -108,6 +109,10 @@ export class ProductPage {
         break;
     }
 
+  }
+
+  setFilteredItems() {
+    this.items = this.dataService.filterItems(this.searchTerm);
   }
 
 }

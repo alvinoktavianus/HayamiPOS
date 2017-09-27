@@ -14,7 +14,9 @@
 
 
 <ion-content padding>
-
+  <ion-row>
+    <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()"></ion-searchbar>
+  </ion-row>
   <ion-row>
     <ion-col col-md-3 *ngFor="let product of products">
       <ion-card>
