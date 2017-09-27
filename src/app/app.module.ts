@@ -41,6 +41,7 @@ import {TransactionShipmentReceivedModalPage} from "../pages/transaction/transac
 import {ProductReturnModalPage} from "../pages/product/product-return-modal/product-return-modal";
 import {ReturnOutstandingPage} from "../pages/return/return-outstanding/return-outstanding";
 import {ReturnCompletedPage} from "../pages/return/return-completed/return-completed";
+import {ReturnOutstandingDetailModalPage} from "../pages/return/return-outstanding/return-outstanding-detail-modal/return-outstanding-detail-modal";
 
 @NgModule({
   declarations: [
@@ -78,6 +79,7 @@ import {ReturnCompletedPage} from "../pages/return/return-completed/return-compl
     ProductReturnModalPage,
     ReturnOutstandingPage,
     ReturnCompletedPage,
+    ReturnOutstandingDetailModalPage,
   ],
   imports: [
     BrowserModule,
@@ -120,6 +122,7 @@ import {ReturnCompletedPage} from "../pages/return/return-completed/return-compl
     ProductReturnModalPage,
     ReturnOutstandingPage,
     ReturnCompletedPage,
+    ReturnOutstandingDetailModalPage,
   ],
   providers: [
     StatusBar,

@@ -1,0 +1,60 @@
+<!--
+  Generated template for the ReturnOutstandingDetailModalPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Detail Return</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <h3>Detail Product</h3>
+  <hr>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-4>Product Code</ion-col>
+      <ion-col col-8>{{detailRetur.ProductCode}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4>Product Description</ion-col>
+      <ion-col col-8>{{detailRetur.ProductDesc}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4>Product Type</ion-col>
+      <ion-col col-8>{{detailRetur.ProductType}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4>Model</ion-col>
+      <ion-col col-8>{{detailRetur.Model}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4>Price</ion-col>
+      <ion-col col-8>Rp. {{detailRetur.Price | number:0}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4>Status</ion-col>
+      <ion-col col-8 *ngIf="detailRetur.Status == 'O'">Waiting for approval</ion-col>
+    </ion-row>
+  </ion-grid>
+  <br>
+  <h3>Detail Return</h3>
+  <hr>
+  <ion-card *ngFor="let dtl of detailRetur.DetailRetur">
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col col-4>{{dtl.ProductSize}}</ion-col>
+          <ion-col col-4>{{dtl.ReturQty}}</ion-col>
+          <ion-col col-4 *ngIf="dtl.ReturType == 'R'">Rusak</ion-col>
+          <ion-col col-4 *ngIf="dtl.ReturType == 'T'">Tidak Laku</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

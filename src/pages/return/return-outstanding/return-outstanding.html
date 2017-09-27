@@ -23,7 +23,7 @@
   </div>
 
   <div *ngIf="returnOutstanding && returnOutstanding.length > 0">
-    <ion-card *ngFor="let retur of returnOutstanding">
+    <ion-card *ngFor="let retur of returnOutstanding" (click)="openModal(retur)">
       <ion-card-content>
         <ion-row>
           <ion-col col-4>Transaction No.</ion-col>
