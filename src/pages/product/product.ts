@@ -4,6 +4,7 @@ import {Http} from "@angular/http";
 import {COUNTERS, CUSTOMERS, MODELS, PRODUCTS, REQUEST_HEADERS, TYPES} from "../../constant/api";
 import 'rxjs/add/operator/map';
 import {ProductDetailModalPage} from "./product-detail-modal/product-detail-modal";
+import {ProductReturnModalPage} from "./product-return-modal/product-return-modal";
 
 /**
  * Generated class for the ProductPage page.
@@ -86,7 +87,7 @@ export class ProductPage {
       );
   }
 
-  openModal = (products) => {
+  openModal = (products, target) => {
     const fullParams = {
       product: {...products},
       model: this.models,
@@ -94,8 +95,19 @@ export class ProductPage {
       customers: this.customers,
       counters: this.counters,
     };
-    let modal = this.modalCtrl.create(ProductDetailModalPage, fullParams);
-    modal.present();
+
+    let modal;
+    switch (target) {
+      case 'detail':
+        modal = this.modalCtrl.create(ProductDetailModalPage, fullParams);
+        modal.present();
+        break;
+      case 'return':
+        modal = this.modalCtrl.create(ProductReturnModalPage, fullParams);
+        modal.present();
+        break;
+    }
+
   }
 
 }

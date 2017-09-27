@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {IonicPage} from 'ionic-angular';
+import {ReturnOutstandingPage} from "./return-outstanding/return-outstanding";
+import {ReturnCompletedPage} from "./return-completed/return-completed";
 
 /**
  * Generated class for the ReturnPage page.
@@ -15,11 +17,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ReturnPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ReturnPage');
-  }
+  tabsReturnOutstanding: ReturnOutstandingPage;
+  tabsReturnCompleted: ReturnCompletedPage;
 
 }
