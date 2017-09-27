@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {REQUEST_HEADERS, RETURN} from "../../../constant/api";
+import {Http} from "@angular/http";
 
 /**
  * Generated class for the ReturnCompletedPage page.
@@ -15,11 +17,33 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ReturnCompletedPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  returnCompleted;
+
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public http: Http) {
+    this.fetchData();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ReturnCompletedPage');
+  fetchData() {
+    this.http
+      .get(RETURN, {headers: REQUEST_HEADERS()})
+      .map(res => res.json())
+      .subscribe(
+        data => {
+          this.returnCompleted = [];
+          data.forEach(retur => {
+            if (retur.ReturStatus === 'C') {
+              this.returnCompleted.push(retur);
+            }
+          })
+        }
+      );
+  }
+
+  doRefresh(refresher) {
+    this.fetchData();
+    refresher.complete();
   }
 
 }

@@ -14,5 +14,22 @@
 
 
 <ion-content padding>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
 
+  <div *ngIf="returnCompleted && returnCompleted.length === 0">
+    <h3>No data found on our server</h3>
+  </div>
+
+  <div *ngIf="returnCompleted && returnCompleted.length > 0">
+    <ion-card *ngFor="let retur of returnCompleted">
+      <ion-card-content>
+        <ion-row>
+          <ion-col col-4>Transaction No.</ion-col>
+          <ion-col col-8>{{retur.TransReturNo}}</ion-col>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>
