@@ -17,7 +17,7 @@ import {ReturnCompletedPage} from "./return-completed/return-completed";
 })
 export class ReturnPage {
 
-  tabsReturnOutstanding: ReturnOutstandingPage;
-  tabsReturnCompleted: ReturnCompletedPage;
+  tabsReturnOutstanding: any = ReturnOutstandingPage;
+  tabsReturnCompleted: any = ReturnCompletedPage;
 
 }
