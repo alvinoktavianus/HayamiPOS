@@ -125,8 +125,7 @@ import {ReturnCompletedPage} from "../pages/return/return-completed/return-compl
     StatusBar,
     SplashScreen,
     Data,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    DataProvider
+    {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
 export class AppModule {

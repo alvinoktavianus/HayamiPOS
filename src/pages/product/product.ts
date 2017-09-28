@@ -5,7 +5,7 @@ import {COUNTERS, CUSTOMERS, MODELS, PRODUCTS, REQUEST_HEADERS, TYPES} from "../
 import 'rxjs/add/operator/map';
 import {ProductDetailModalPage} from "./product-detail-modal/product-detail-modal";
 import {ProductReturnModalPage} from "./product-return-modal/product-return-modal";
-import { Data } from '../../../providers/data';
+import { Data } from "../../providers/data/data";
 /**
  * Generated class for the ProductPage page.
  *
@@ -26,6 +26,7 @@ export class ProductPage {
   customers: any;
   counters: any;
   searchTerm: string;
+
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public http: Http,
@@ -108,11 +109,13 @@ export class ProductPage {
         modal.present();
         break;
     }
-
+  }
+  ionViewDidLoad(){
+    this.setFilteredItems();
   }
 
   setFilteredItems() {
-    this.items = this.dataService.filterItems(this.searchTerm);
+    this.products = this.dataService.filterProduct("ProductCode",this.searchTerm);
   }
 
 }
