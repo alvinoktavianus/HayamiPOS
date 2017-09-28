@@ -29,8 +29,10 @@ export class Data {
     if(this.items !=null) {
       return this.items.filter((item) => {
         switch (searchVar) {
-          case "ProductCode":
-            return item.ProductCode.indexOf(searchTerm) > -1;
+          case "Product Code":
+            return item.ProductCode.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+          case "Product Description":
+            return item.ProductDesc.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
         }
       });
     }

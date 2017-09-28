@@ -26,7 +26,7 @@ export class ProductPage {
   customers: any;
   counters: any;
   searchTerm: string;
-
+  searchVar: string;
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public http: Http,
@@ -110,12 +110,18 @@ export class ProductPage {
         break;
     }
   }
+  doRefresh(refresher) {
+    this.fetchData();
+    refresher.complete();
+    this.searchTerm = "";
+  }
+
   ionViewDidLoad(){
     this.setFilteredItems();
   }
 
   setFilteredItems() {
-    this.products = this.dataService.filterProduct("ProductCode",this.searchTerm);
+    this.products = this.dataService.filterProduct(this.searchVar,this.searchTerm);
   }
 
 }

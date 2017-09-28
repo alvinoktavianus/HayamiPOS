@@ -14,7 +14,15 @@
 
 
 <ion-content padding>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-row>
+    <ion-select  [(ngModel)]="searchVar" name ="searchProduct">
+      <ion-option selected disabled>Please select</ion-option>
+      <ion-option [value]="ProductCode">Product Code</ion-option>
+      <ion-option [value]="ProductDesc">Product Description</ion-option>
+    </ion-select>
     <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()"></ion-searchbar>
   </ion-row>
   <ion-row>
