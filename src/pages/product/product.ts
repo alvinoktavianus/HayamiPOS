@@ -27,6 +27,10 @@ export class ProductPage {
   counters: any;
   searchTerm: string;
   searchVar: string;
+  searchProduct: any = {
+
+
+  };
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public http: Http,
@@ -114,6 +118,7 @@ export class ProductPage {
     this.fetchData();
     refresher.complete();
     this.searchTerm = "";
+    this.searchVar = "Please select";
   }
 
   ionViewDidLoad(){

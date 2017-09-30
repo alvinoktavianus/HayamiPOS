@@ -20,7 +20,7 @@ import {LOGIN} from "../../constant/api";
 })
 export class LoginPage {
 
-  public email: string;
+  public username: string;
   public password: string;
 
   constructor(public navCtrl: NavController,
@@ -35,11 +35,11 @@ export class LoginPage {
       content: 'Please wait...'
     });
 
-    if (this.email == null || this.password == null) {
+    if (this.username == null || this.password == null) {
       this.presentAlert();
     } else {
       let credentials = {
-        UserEmail: this.email,
+        UserName: this.username,
         UserPassword: this.password
       };
 
