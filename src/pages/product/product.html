@@ -17,14 +17,21 @@
   <ion-refresher (ionRefresh)="doRefresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
-  <ion-row>
-    <ion-select  [(ngModel)]="searchVar" name ="searchProduct">
-      <ion-option selected disabled>Please select</ion-option>
-      <ion-option [value]="ProductCode">Product Code</ion-option>
-      <ion-option [value]="ProductDesc">Product Description</ion-option>
-    </ion-select>
-    <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()"></ion-searchbar>
-  </ion-row>
+
+  <ion-card>
+    <ion-row align-items-end>
+      <ion-item col-md-5>
+        <ion-select col-md-5 [(ngModel)]="searchVar" name ="searchProduct">
+          <ion-option selected disabled>Please select</ion-option>
+          <ion-option>Product Code</ion-option>
+          <ion-option>Product Description</ion-option>
+          <ion-option>Product Type</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-searchbar col-md-7 [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()"></ion-searchbar>
+    </ion-row>
+  </ion-card>
+
   <ion-row>
     <ion-col col-md-3 *ngFor="let product of products">
       <ion-card>
