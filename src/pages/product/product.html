@@ -23,16 +23,19 @@
         <ion-select [(ngModel)]="filterByKey">
           <ion-option [value]="'ProductCode'" selected>Product Code</ion-option>
           <ion-option [value]="'ProductDesc'">Product Desc</ion-option>
+          <ion-option [value]="'Model'">Model Name</ion-option>
         </ion-select>
       </ion-col>
       <ion-col col-4>
-        <ion-input placeholder="Search by product desc" [(ngModel)]="filterByProductDesc"></ion-input>
+        <ion-input
+          placeholder="Search by product desc" [(ngModel)]="filterByProductDesc"
+          (ngModelChange)="onModelChange($event)"></ion-input>
       </ion-col>
     </ion-row>
   </ion-grid>
 
   <ion-row>
-    <ion-col col-md-3 *ngFor="let product of products|filterBy:['ProductCode']:filterByProductDesc">
+    <ion-col col-md-3 *ngFor="let product of products">
       <ion-card>
         <img src="http://placehold.it/300x200"/>
         <ion-card-content>

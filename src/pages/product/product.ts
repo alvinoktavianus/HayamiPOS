@@ -21,6 +21,7 @@ import {ProductReturnModalPage} from "./product-return-modal/product-return-moda
 export class ProductPage {
 
   products: any;
+  allProducts: any;
   types: any = {};
   models: any = {};
   customers: any;
@@ -44,6 +45,7 @@ export class ProductPage {
       .subscribe(
         data => {
           this.products = data;
+          this.allProducts = data;
         }
       );
 
@@ -110,6 +112,30 @@ export class ProductPage {
         break;
     }
 
+  };
+
+  onModelChange(e) {
+    if (e && e !== "") {
+      const tempProducts = [...this.allProducts];
+      switch (this.filterByKey) {
+        case 'ProductCode':
+          break;
+        case 'ProductDesc':
+          break;
+        case 'Model':
+          let filteredProduct = [];
+          tempProducts.forEach(product => {
+            let modelName = this.models[product.ModelID].ModelName;
+            if (modelName.includes(e)) {
+              filteredProduct.push(product);
+            }
+          });
+          this.products = filteredProduct;
+          break;
+      }
+    } else {
+      this.products = [...this.allProducts];
+    }
   }
 
 }
