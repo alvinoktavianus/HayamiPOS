@@ -25,6 +25,8 @@ export class ProductPage {
   models: any = {};
   customers: any;
   counters: any;
+  filterByProductDesc;
+  filterByKey = 'ProductCode';
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
