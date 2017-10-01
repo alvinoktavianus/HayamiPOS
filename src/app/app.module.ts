@@ -42,6 +42,7 @@ import {ProductReturnModalPage} from "../pages/product/product-return-modal/prod
 import {ReturnOutstandingPage} from "../pages/return/return-outstanding/return-outstanding";
 import {ReturnCompletedPage} from "../pages/return/return-completed/return-completed";
 import {ReturnOutstandingDetailModalPage} from "../pages/return/return-outstanding/return-outstanding-detail-modal/return-outstanding-detail-modal";
+import {NgPipesModule} from "ngx-pipes";
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ import {ReturnOutstandingDetailModalPage} from "../pages/return/return-outstandi
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpModule
+    HttpModule,
+    NgPipesModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
