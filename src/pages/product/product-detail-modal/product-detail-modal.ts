@@ -60,7 +60,7 @@ export class ProductDetailModalPage {
 
   addQty(event) {
     if (this.transactionDt.ProductSize) {
-      if (this.transactionDt.Qty <= this.stock[this.transactionDt.ProductSize]) {
+      if (this.transactionDt.Qty < this.stock[this.transactionDt.ProductSize]) {
         this.transactionDt.Qty++;
       } else {
         event.preventDefault();

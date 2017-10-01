@@ -33,45 +33,66 @@
       <ion-col col-4>Model</ion-col>
       <ion-col col-8>{{models[product.ModelID].ModelName}}</ion-col>
     </ion-row>
-    <ion-row>
-      <ion-col col-4>Size</ion-col>
-      <ion-col col-8>
-        <ion-select [(ngModel)]="transactionDt.ProductSize" name="productSize">
-          <ion-option selected disabled>Please select</ion-option>
-          <ion-option *ngFor="let dt of product.ProductDts" [value]="dt.ProductSize">{{dt.ProductSize}}</ion-option>
-        </ion-select>
-      </ion-col>
+    <ion-row align-items-center>
+        <ion-col col-4>Size</ion-col>
+        <ion-col col-8>
+          <ion-item style="font-size: 14px;padding:0px;width: 250px;">
+            <ion-select [(ngModel)]="transactionDt.ProductSize" name="productSize"
+                        style="max-width: 100% !important;width: 90%;padding: 0px">
+              <ion-option selected disabled>Please select</ion-option>
+              <ion-option *ngFor="let dt of product.ProductDts" [value]="dt.ProductSize">{{dt.ProductSize}}</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
     </ion-row>
-    <ion-row>
+    <ion-row align-items-center>
       <ion-col col-4>Quantity</ion-col>
       <ion-col col-8>
         <ion-input [(ngModel)]="transactionDt.Qty" disabled></ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4></ion-col>
+      <ion-col col-8>
         <button ion-button (click)="addQty($event)" small>+</button>
         <button ion-button (click)="decreaseQty($event)" small>-</button>
       </ion-col>
+    </ion-row>
+    <ion-row>
       <ion-col col-4></ion-col>
       <ion-col col-8>
         <small *ngIf="transactionDt.ProductSize">Stock {{stock[transactionDt.ProductSize]}} pcs</small>
       </ion-col>
     </ion-row>
-    <ion-row>
-      <ion-col col-4>Ammount Discount</ion-col>
+
+    <ion-row align-items-center>
+      <ion-col col-4>Amount Discount</ion-col>
       <ion-col col-8>
-        <ion-select [(ngModel)]="transactionDt.AddDiscountType" name="discountType">
+        <ion-item style="font-size: 14px;padding:0px;width: 250px;">
+        <ion-select [(ngModel)]="transactionDt.AddDiscountType" name="discountType"
+          style="max-width: 100% !important;width: 90%;padding: 0px">
           <ion-option selected [value]="'P'">%</ion-option>
           <ion-option [value]="'N'">Rp.</ion-option>
         </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-4></ion-col>
+      <ion-col col-8>
         <ion-input
           [(ngModel)]="transactionDt.AddDiscountValue"
           (ngModelChange)="validateDiscount($event)"
           placeholder="Input discount value here"></ion-input>
       </ion-col>
+    </ion-row>
+    <ion-row>
       <ion-col col-4></ion-col>
       <ion-col col-8>
         <small>Amount discount: Rp. {{totalDiscount | number: 0}}</small>
       </ion-col>
     </ion-row>
-    <ion-row>
+    <ion-row align-items-center>
       <ion-col col-4>Discount Description</ion-col>
       <ion-col col-8>
         <ion-input
@@ -90,34 +111,45 @@
   <h3>Shipping To</h3>
   <hr/>
   <ion-grid>
-    <ion-row>
+    <ion-row align-items-center>
       <ion-col col-4>Shipping To</ion-col>
       <ion-col col-8>
-        <ion-select name="target" [(ngModel)]="transactionDt.target">
-          <ion-option [value]="customer">customer</ion-option>
-          <ion-option [value]="counter">counter</ion-option>
-        </ion-select>
+        <ion-item style="font-size: 14px;padding:0px;width: 250px;">
+          <ion-select name="target" [(ngModel)]="transactionDt.target"
+                      style="max-width: 100% !important;width: 90%;padding: 0px">
+            <ion-option selected disabled>Please select</ion-option>
+            <ion-option [value]="customer">customer</ion-option>
+            <ion-option [value]="counter">counter</ion-option>
+          </ion-select>
+        </ion-item>
       </ion-col>
     </ion-row>
 
     <div *ngIf="transactionDt.target == 'customer'">
-      <ion-row>
+      <ion-row align-items-center>
         <ion-col col-4>Customer's Name</ion-col>
         <ion-col col-8>
-          <ion-select [(ngModel)]="transactionHd.CustomerID" name="customerid">
-            <ion-option selected disabled>Please select</ion-option>
-            <ion-option *ngFor="let customer of customers" [value]="customer.CustomerID">{{customer.CustName}}
-            </ion-option>
-          </ion-select>
+          <ion-item style="font-size: 14px;padding:0px;width: 250px;">
+            <ion-select [(ngModel)]="transactionHd.CustomerID" name="customerid"
+                        style="max-width: 100% !important;width: 90%;padding: 0px">
+              <ion-option selected disabled>Please select</ion-option>
+              <ion-option *ngFor="let customer of customers" [value]="customer.CustomerID">{{customer.CustName}}
+              </ion-option>
+            </ion-select>
+          </ion-item>
         </ion-col>
       </ion-row>
-      <ion-row>
+      <ion-row >
         <ion-col col-4>Address</ion-col>
         <ion-col col-8 *ngIf="transactionHd.CustomerID">{{hashedCustomers[transactionHd.CustomerID].CustAddr}}</ion-col>
       </ion-row>
       <ion-row>
         <ion-col col-4>City</ion-col>
         <ion-col col-8 *ngIf="transactionHd.CustomerID">{{hashedCustomers[transactionHd.CustomerID].CustCity}}</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-4>Pos Code</ion-col>
+        <ion-col col-8 *ngIf="transactionHd.CustomerID">{{hashedCustomers[transactionHd.CustomerID].CustPosCode}}</ion-col>
       </ion-row>
       <ion-row>
         <ion-col col-4>Contact No.</ion-col>
@@ -151,7 +183,7 @@
 
     <br/>
     <ion-row>
-      <ion-col col-10></ion-col>
+      <ion-col col-8></ion-col>
       <ion-col col-2>
         <button ion-button (click)="addToCart()">Add to Cart</button>
       </ion-col>

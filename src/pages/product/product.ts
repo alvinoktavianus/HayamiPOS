@@ -116,13 +116,22 @@ export class ProductPage {
 
   onModelChange(e) {
     if (e && e !== "") {
+      let filteredProduct = [];
       const tempProducts = [...this.allProducts];
       switch (this.filterByKey) {
         case 'Model':
-          let filteredProduct = [];
           tempProducts.forEach(product => {
             let modelName = this.models[product.ModelID].ModelName;
             if (modelName.includes(e)) {
+              filteredProduct.push(product);
+            }
+          });
+          this.products = filteredProduct;
+          break;
+        case 'Type':
+          tempProducts.forEach(product => {
+            let typeName = this.types[product.TypeID].TypeName;
+            if (typeName.includes(e)) {
               filteredProduct.push(product);
             }
           });
