@@ -26,7 +26,7 @@ export class ProductPage {
   models: any = {};
   customers: any;
   counters: any;
-  filterByProductDesc;
+  filterByProduct;
   filterByKey = 'ProductCode';
 
   constructor(public navCtrl: NavController,
@@ -55,7 +55,6 @@ export class ProductPage {
       .subscribe(
         data => {
           data.forEach(type => {
-            // console.log(type);
             this.types[type.TypeID] = type;
           });
         }
@@ -118,10 +117,6 @@ export class ProductPage {
     if (e && e !== "") {
       const tempProducts = [...this.allProducts];
       switch (this.filterByKey) {
-        case 'ProductCode':
-          break;
-        case 'ProductDesc':
-          break;
         case 'Model':
           let filteredProduct = [];
           tempProducts.forEach(product => {
