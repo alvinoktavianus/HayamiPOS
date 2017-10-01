@@ -74,7 +74,15 @@ export class ProductReturnModalPage {
     this.successAlert = this.alertCtrl.create({
       message: 'Successfully create a new return',
       title: 'Success',
-      buttons: ['OK']
+      buttons: [
+        {
+          text: 'OK',
+          role: 'ok',
+          handler: () => {
+            this.navParams.data.DetailModal.dismiss();
+          }
+        }
+      ]
     });
     this.successAlert.present();
   }

@@ -28,6 +28,7 @@ export class ProductPage {
   counters: any;
   filterByProduct;
   filterByKey = 'ProductCode';
+  productDetailModal;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -97,17 +98,17 @@ export class ProductPage {
       type: this.types,
       customers: this.customers,
       counters: this.counters,
+      DetailModal: this.productDetailModal
     };
 
-    let modal;
     switch (target) {
       case 'detail':
-        modal = this.modalCtrl.create(ProductDetailModalPage, fullParams);
-        modal.present();
+        this.productDetailModal = this.modalCtrl.create(ProductDetailModalPage, fullParams);
+        this.productDetailModal.present();
         break;
       case 'return':
-        modal = this.modalCtrl.create(ProductReturnModalPage, fullParams);
-        modal.present();
+        this.productDetailModal = this.modalCtrl.create(ProductReturnModalPage, fullParams);
+        this.productDetailModal.present();
         break;
     }
 
